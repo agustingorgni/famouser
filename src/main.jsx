@@ -4,11 +4,13 @@ import AppLayout from './layouts/AppLayout';
 import List from './pages/List';
 import Contact from './pages/Contact';
 import './styles/index.scss';
-import { ListLoader, RootLoader } from './loaders';
+import { DescriptionLoader, ListLoader, RootLoader } from './loaders';
+import Description from './pages/Description';
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route element={<AppLayout />} loader={RootLoader}>
-    <Route path='list' element={<List />} loader={ListLoader} />
+    <Route path='stars' element={<List />} loader={ListLoader} />
+    <Route path='stars/:name' element={<Description />} loader={DescriptionLoader} />
     <Route path='contact' element={<Contact />} />
     <Route path='*' element={<div>Error</div>} />
   </Route>

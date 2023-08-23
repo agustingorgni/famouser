@@ -1,0 +1,39 @@
+.list {
+    a {
+        text-decoration: none;
+        color: rgb(71, 70, 70);
+    }
+}
+
+.row {
+    height: 3em;
+    text-transform: capitalize;
+    border-bottom: 1px solid gray;
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    &:before {
+        content: '';
+        position: absolute;
+        width: 5px;
+        display: inline-flex;
+        height: 100%;
+        background-color: gray;
+    }
+
+    &__title {
+        margin: 0;
+        padding-left: 15px;
+
+        &--dead::after {
+            content: '\271D';
+            padding-left: 10px;
+        }
+    }
+
+    &--last {
+        border-bottom: none
+    }
+}
