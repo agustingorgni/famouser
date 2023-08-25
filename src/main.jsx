@@ -12,11 +12,11 @@ import './styles/index.scss';
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route element={<AppLayout />}>
-    <Route index element={<Home />} title="test" />
-    <Route path='stars' element={<List />} loader={ListLoader} />
-    <Route path='stars/:name' element={<Description />} loader={DescriptionLoader} />
-    <Route path='contact' element={<Contact />} />
-    <Route path='*' element={<div>Error</div>} />
+    <Route path="/famouser" element={<Home />} title="test" />
+    <Route path='/famouser/stars' element={<List />} loader={ListLoader} />
+    <Route path='/famouserstars/:name' element={<Description />} loader={DescriptionLoader} />
+    <Route path='/famousercontact' element={<Contact />} />
+    <Route path='/famouser/*' element={<div>Error</div>} />
   </Route>
 ));
 
