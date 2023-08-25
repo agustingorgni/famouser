@@ -1,6 +1,6 @@
 import { useLoaderData, useNavigate } from "react-router-dom"
 
-export default function Description() {
+const Description = () => {
     const celebrity = useLoaderData();
     const navigate = useNavigate();
 
@@ -14,4 +14,8 @@ export default function Description() {
             <button onClick={handleBack}>Go back</button>
         </div>
     );
+};
+
+export {
+    Description,
 }

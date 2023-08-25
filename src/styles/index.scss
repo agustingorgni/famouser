@@ -1,5 +1,25 @@
+@import 'https://fonts.googleapis.com/css?family=Roboto:300,400,600,700';
+
+:root {
+  --lightblue: #00b4c6;
+  --gray: #4E4E4E;
+  --maroon: #e76f519d;
+  --orange: #e76f51;
+  --teal: #264653;
+  --white: #FFFFFF;
+  --black: #000000;
+}
+
 html, body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+body {
+  font-family: 'Roboto';
+}
+
+h1, h2, h3 {
+  margin: 0;
 }

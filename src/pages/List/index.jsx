@@ -1,7 +1,7 @@
 import { Link, useLoaderData } from "react-router-dom";
 
 import styles from './styles.module.scss';
-import Avatar from "../../components/Avatar";
+import { MemorizedAvatar as Avatar } from "../../components/Avatar";
 
 export default function List() {
     const actors = useLoaderData();
