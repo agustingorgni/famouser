@@ -1,36 +1,44 @@
-import { Form, Link, Outlet, useLoaderData } from 'react-router-dom';
+import { useEffect, useRef } from 'react';
+import { Outlet } from 'react-router-dom';
 
 import styles from './styles.module.scss';
-import { Input } from '../components/Input';
+import { ExternalLink } from '../components/ExternalLink';
 
 export default function AppLayout() {
-    const query = useLoaderData();
+    const headerRef = useRef(null);
+
+    const handleScroll = () => {
+        const scrollOffset = window.scrollY;
+
+        if (headerRef.current) {
+            if(scrollOffset >= 100) {
+                headerRef.current.classList.add(`${styles['header--fixed']}`);
+            } else {
+                headerRef.current.classList.remove(`${styles['header--fixed']}`);
+            }
+        }
+    };
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        }
+    }, []);
 
     return (
         <div className={styles.container}>
-            <header className={styles.header}>
-                <div className={styles['header__logo-container']}>
-                    <Link to="/">
-                        <img src="/img/logo.png" height={40} alt='famouser logo' />
-                    </Link>
-                    <h1 className={styles.header__title}>Famouser</h1>
-                </div>
-                <div className={styles.header__searchbox}>
-                    <Form action='stars'>
-                        <div className={styles['input-container']}>
-                            <Input name="q" className={styles['input-container__input']} type="string" defaultValue={query} />
-                            <button className={styles['input-container__button']} type='submit'>&#x1F50D;</button>
-                        </div>
-                    </Form>
-                </div>
+            <header ref={headerRef} className={styles.header}>
+                <span>Famouser</span>
             </header>
-            <section id="body" className={styles.body}>
-                <div className={styles.divider} />
+            <section className={styles.body}>
                 <Outlet />
             </section>
-            <section id="footer" className={styles.footer}>
-                Famouser was created with 💓by agorgni
+            <section className={styles.footer}>
+                <hr className={styles.footer__divider} />
+                <span>Famouser was created with 💓by <ExternalLink href="https://github.com/agustingorgni">Agustin Gorgni</ExternalLink></span>
             </section>
         </div>
-    )
+    );
 }
