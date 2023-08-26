@@ -4,24 +4,22 @@ import styles from './styles.module.scss';
 import { MemorizedAvatar as Avatar } from "../../components/Avatar";
 
 export default function List() {
-    const actors = useLoaderData();
+    const celebrities = useLoaderData();
     // TODO: ver de enviar un error para mostrarlo en una pagina general
-    if (!actors || actors.length === 0) return <div>No stars were found 😞</div>;
+    if (!celebrities || celebrities.length === 0) return <div>No stars were found 😞</div>;
 
     return (
-        <section id="list" className={styles.list}>
-            <h2>Your list of stars ✨</h2>
+        <section className={styles.list}>
             {
-                actors.map((actor, i) => (
-                    <Link to={`/stars/${actor.name.replace(' ', '-')}`} key={i}>
-                        <div className={i === actors.length - 1 ? `${styles.row} ${styles['row--last']}` : styles['row']}>
-                            <div className={styles.row__picture}>
-                                <Avatar gender={actor.gender} />
+                celebrities.map((celeb, i) => (
+                    <Link to={`/famouser/stars/${celeb.name.replace(' ', '-')}`} key={i}>
+                        <div className={styles.card}>
+                            <div className={styles.card__image}>
+                                <img src="/famouser/img/avatar.jpg" width="100%" />
                             </div>
-                            <div className={styles.row__information}>
-                                <span className={`${styles.row__title} ${actor.is_alive ? '' : styles['row__title--dead']}`}>{actor.name}</span>
-                                {actor.gender && <span className={styles.row__subtitle}>{actor.gender}</span>}
-                                {actor.age && <span className={styles.row__subtitle}>{actor.age} years old</span>}
+                            <hr className={styles.card__divider} />
+                            <div className={styles.card__information}>
+                                <span>{celeb.name}</span>
                             </div>
                         </div>
                     </Link>
