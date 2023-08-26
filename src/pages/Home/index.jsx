@@ -16,7 +16,7 @@ const Home = () => {
                         <h3 className={styles.cover__subtitle}>You can learn a lot about your favorite artist by just typing his/her name!</h3>
                     </div>
                     <div className={styles.cover__image}>
-                        <img src='/img/celebrities.png' alt="famouser cover" height="auto" width="100%" loading='lazy' />
+                        <img src='/famouser/img/celebrities.png' alt="famouser cover" height="auto" width="100%" loading='lazy' />
                     </div>
                 </Section.Description>
                 <div className={styles.searchbox}>
@@ -30,7 +30,7 @@ const Home = () => {
             </Section>
             <Section className={styles.about}>
                 <Section.Image className={styles.about__image}>
-                    <img src='/img/cartoon.png' alt="about famouser" height="auto" width="100%" loading='lazy' />
+                    <img src='/famouser/img/cartoon.png' alt="about famouser" height="auto" width="100%" loading='lazy' />
                 </Section.Image>
                 <Section.Description className={styles.about__description}>
                     <h3 className={styles.about__title}>Welcome to Famouser!</h3>
@@ -46,7 +46,7 @@ const Home = () => {
                     <p className={styles.contact__p}>Feel free to contact me on <ExternalLink href="https://www.linkedin.com/in/agustin-gorgni-95607360/">Linkedin</ExternalLink></p>
                 </Section.Description>
                 <Section.Image className={styles.contact__image}>
-                    <img src='/img/me.png' alt="Agustin Gorgni" height="auto" width="100%" loading='lazy' />
+                    <img src='/famouser/img/me.png' alt="Agustin Gorgni" height="auto" width="100%" loading='lazy' />
                 </Section.Image>
             </Section>
         </>
