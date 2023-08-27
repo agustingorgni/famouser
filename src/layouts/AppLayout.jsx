@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 
 import styles from './styles.module.scss';
 import { ExternalLink } from '../components/ExternalLink';
@@ -30,7 +30,7 @@ export default function AppLayout() {
     return (
         <div className={styles.container}>
             <header ref={headerRef} className={styles.header}>
-                <span>Famouser</span>
+                <Link to="/famouser">Famouser</Link>
             </header>
             <section className={styles.body}>
                 <Outlet />
