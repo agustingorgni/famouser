@@ -4,6 +4,15 @@
     flex-flow: column nowrap;
 }
 
+.overlay {
+    background: inherit;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+}
+
 .header {
     display: flex;
     width: 100%;

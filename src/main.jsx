@@ -3,7 +3,6 @@ import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } 
 
 import AppLayout from './layouts/AppLayout';
 import List from './pages/List';
-import Contact from './pages/Contact';
 import { DescriptionLoader, ListLoader } from './loaders';
 import { Description } from './pages/Description';
 import { Home } from './pages/Home';
@@ -14,8 +13,7 @@ const router = createBrowserRouter(createRoutesFromElements(
   <Route element={<AppLayout />}>
     <Route path="/famouser" element={<Home />} title="test" />
     <Route path='/famouser/stars' element={<List />} loader={ListLoader} />
-    <Route path='/famouserstars/:name' element={<Description />} loader={DescriptionLoader} />
-    <Route path='/famousercontact' element={<Contact />} />
+    <Route path='/famouser/stars/:name' element={<Description />} loader={DescriptionLoader} />
     <Route path='/famouser/*' element={<div>Error</div>} />
   </Route>
 ));

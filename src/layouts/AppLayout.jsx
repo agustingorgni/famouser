@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useNavigation } from 'react-router-dom';
 
 import styles from './styles.module.scss';
 import { ExternalLink } from '../components/ExternalLink';
@@ -27,8 +27,14 @@ export default function AppLayout() {
         }
     }, []);
 
+    const navigation = useNavigation();
+    const searching =
+        navigation.location &&
+        new URLSearchParams(navigation.location.search).has("q");
+
     return (
         <div className={styles.container}>
+            { searching && <div className={styles.overlay} /> }
             <header ref={headerRef} className={styles.header}>
                 <Link to="/famouser">Famouser</Link>
             </header>
