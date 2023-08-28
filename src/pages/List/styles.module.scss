@@ -15,11 +15,16 @@
         width: 100%;
     }
 
+    &__title {
+        padding-bottom: 10px;
+        text-transform: uppercase;
+    }
+
     &__cta {
         position: absolute;
         right: 20px;
         top: 20px;
-        background-color: #FF5722;
+        background-color: var(--orange);
         height: 50px;
         width: 50px;
         border-radius: 50%;
@@ -43,16 +48,26 @@
     }
 
     &__description {
-        background-color: #FF5722;
         height: 100px;
         position: relative;
         padding: 20px;
         box-sizing: border-box;
-        text-transform: uppercase;
         font-weight: 900;
         color: var(--white);
         display: flex;
         flex-flow: column nowrap;
+
+        &--orange {
+            background-color: var(--orange);
+        }
+
+        &--teal {
+            background-color: var(--teal);
+        }
+
+        &--gray {
+            background-color: var(--gray);
+        }
 
         &::before {
             content: '';
@@ -61,7 +76,7 @@
             left: 0;
             height: 15px;
             width: 15px;
-            background-color: #BF360C;
+            background-color: var(--orange);
             clip-path: polygon(100% 0, 100% 0, 100% 100%, 0 100%);
         }
     }
