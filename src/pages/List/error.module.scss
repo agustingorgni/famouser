@@ -1,0 +1,18 @@
+.error {
+    padding-top: 120px;
+    padding-bottom: 50px;
+    text-align: center;
+
+    &__image {
+        padding-bottom: 20px;
+
+        img {
+            max-height: 300px;
+            object-fit: contain;
+        }
+    }
+
+    &__message {
+        margin-bottom: 15px;
+    }
+}

@@ -1,10 +1,8 @@
 import PropTypes from 'prop-types';
 
-import styles from './styles.module.scss';
-
 const ExternalLink = ({ href, target, children }) => {
     return (
-        <a className={styles.link} href={href} target={target} rel="noopener noreferrer">{children}</a>
+        <a href={href} target={target} rel="noopener noreferrer">{children}</a>
     );
 };
 

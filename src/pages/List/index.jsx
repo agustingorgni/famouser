@@ -5,9 +5,6 @@ import styles from './styles.module.scss';
 export default function List() {
     const celebrities = useLoaderData();
 
-    // TODO: ver de enviar un error para mostrarlo en una pagina general
-    if (!celebrities || celebrities.length === 0) return <div>No stars were found 😞</div>;
-
     const COLORS = {
         1: 'teal',
         2: 'orange',
