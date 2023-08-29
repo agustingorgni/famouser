@@ -56,18 +56,7 @@
         color: var(--white);
         display: flex;
         flex-flow: column nowrap;
-
-        &--orange {
-            background-color: var(--orange);
-        }
-
-        &--teal {
-            background-color: var(--teal);
-        }
-
-        &--gray {
-            background-color: var(--gray);
-        }
+        background-color: var(--orange);
 
         &::before {
             content: '';
