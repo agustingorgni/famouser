@@ -28,9 +28,7 @@ export default function AppLayout() {
     }, []);
 
     const navigation = useNavigation();
-    const searching =
-        navigation.location &&
-        new URLSearchParams(navigation.location.search).has("q");
+    const searching = navigation.location ? true : false;
 
     return (
         <div className={styles.container}>
