@@ -8,13 +8,13 @@ import { Description } from './pages/Description';
 import { Home } from './pages/Home';
 
 import './styles/index.scss';
-import { Error as ListError } from './pages/List/Error';
+import { Error as ErrorPage } from './pages/Error';
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route element={<AppLayout />}>
     <Route path="/famouser" element={<Home />} title="test" />
-    <Route path='/famouser/stars' element={<List />} errorElement={<ListError />} loader={ListLoader} />
-    <Route path='/famouser/stars/:name' element={<Description />} loader={DescriptionLoader} />
+    <Route path='/famouser/stars' element={<List />} errorElement={<ErrorPage />} loader={ListLoader} />
+    <Route path='/famouser/stars/:name' element={<Description />} errorElement={<ErrorPage />} loader={DescriptionLoader} />
     <Route path='/famouser/*' element={<div>Error</div>} />
   </Route>
 ));

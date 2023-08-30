@@ -1,0 +1,9 @@
+.tag {
+    text-transform: capitalize;
+    color: var(--white);
+    background-color: var(--gray);
+    display: inline-flex;
+    padding: 5px 10px;
+    margin: 2px;
+    border-radius: 10px;
+}
