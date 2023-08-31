@@ -3,19 +3,21 @@ import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } 
 
 import AppLayout from './layouts/AppLayout';
 import List from './pages/List';
-import { DescriptionLoader, ListLoader } from './loaders';
+import { DescriptionLoader, FavoritesLoader, ListLoader } from './loaders';
 import { Description } from './pages/Description';
 import { Home } from './pages/Home';
 
 import './styles/index.scss';
 import { Error as ErrorPage } from './pages/Error';
+import { Favorites } from './pages/Favorites';
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route element={<AppLayout />}>
-    <Route path="/famouser" element={<Home />} title="test" />
+    <Route path="/famouser/" element={<Home />} />
     <Route path='/famouser/stars' element={<List />} errorElement={<ErrorPage />} loader={ListLoader} />
     <Route path='/famouser/stars/:name' element={<Description />} errorElement={<ErrorPage />} loader={DescriptionLoader} />
-    <Route path='/famouser/*' element={<div>Error</div>} />
+    <Route path='/famouser/favorites' element={<Favorites />} loader={FavoritesLoader} />
+    <Route path='/famouser/*' element={<ErrorPage />} />
   </Route>
 ));
 

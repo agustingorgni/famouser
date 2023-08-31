@@ -1,6 +1,7 @@
 import { Link, useLoaderData } from "react-router-dom";
 
 import styles from './styles.module.scss';
+import { MALE } from "../../utils/enums/gender";
 
 export default function List() {
     const celebrities = useLoaderData();
@@ -14,7 +15,7 @@ export default function List() {
                             <div key={celebrity.name} className={styles.card}>
                                 <div className={styles.card__image}>
                                     <img
-                                        src={celebrity.gender && celebrity.gender === 'male' ? '/famouser/img/male_avatar.jpg' : '/famouser/img/female_avatar.png'}
+                                        src={celebrity.gender && celebrity.gender === MALE ? '/famouser/img/male_avatar.jpg' : '/famouser/img/female_avatar.png'}
                                         width="100%"
                                         height="100%"
                                         alt={celebrity.name}
