@@ -1,8 +1,20 @@
 import { useState } from 'react';
 import { useDatabase } from '../../hooks/useDatabase';
-import { deleteCelebrity } from '../../utils/indexedDB';
+import { addUser, deleteCelebrity, openDatabase } from '../../utils/indexedDB';
 import styles from './styles.module.scss';
 import { useLoaderData } from 'react-router-dom';
+
+export async function action({ request, params }) {
+    const formData = await request.formData();
+    const db = await openDatabase();
+    if (!formData.get('favorite')) {
+        console.log('delete');
+    } else {
+        await addUser(db, { name: formData.get('name') });
+    }
+    
+    return null;
+}
 
 const Favorites = () => {
     const favorites = useLoaderData();
