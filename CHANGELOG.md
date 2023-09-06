@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.3](https://github.com/mokkapps/changelog-generator-demo/compare/v0.0.2...v0.0.3) (2023-09-06)
+
+
+### Features
+
+* **Favorites:** log modified ([f1967cb](https://github.com/mokkapps/changelog-generator-demo/commits/f1967cbf4fb0dff82d587c4cb92f19a5523d5570))
+
+
+### Bug Fixes
+
+* **Favorites:** log modified ([222c330](https://github.com/mokkapps/changelog-generator-demo/commits/222c330666458b7d389768ae2fe5ee296920d037))
+* **Home Page:** explanation deleted ([9720ec0](https://github.com/mokkapps/changelog-generator-demo/commits/9720ec02d3c969c9b1a89630ce7ed2a2b9814599))
+* **Home Page:** text modified ([bcd5c5f](https://github.com/mokkapps/changelog-generator-demo/commits/bcd5c5f2db8784a0f44b878131688e54a4712622))
+* **Home Page:** typo ([498e5a0](https://github.com/mokkapps/changelog-generator-demo/commits/498e5a0dddf9374f3511c55b5c99ef574e52f2a9))
+
 ### [0.0.2](https://github.com/mokkapps/changelog-generator-demo/compare/v0.0.1...v0.0.2) (2023-09-06)
 
 ### [0.0.1](https://github.com/mokkapps/changelog-generator-demo/compare/v0.0.0...v0.0.1) (2023-09-06)
