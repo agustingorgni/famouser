@@ -8,7 +8,7 @@ export async function action({ request, params }) {
     const formData = await request.formData();
     const db = await openDatabase();
     if (!formData.get('favorite')) {
-        console.log('delete');
+        console.log('deletee');
     } else {
         await addUser(db, { name: formData.get('name') });
     }
