@@ -43,7 +43,7 @@ const Home = () => {
             <Section className={styles.contact}>
                 <Section.Description className={styles.contact__description}>
                     <h3 className={styles.contact__title}>About the author</h3>
-                    <p className={styles.contact__p}>My name is Agustin Gorgni, and Im an argentinian Software Engineer currently working at Mercado Libre as a frontend developer.</p>
+                    <p className={styles.contact__p}>My name is Agustin Gorgni, and Im a Software Engineer currently working at Mercado Libre as a frontend developer.</p>
                     <p className={styles.contact__p}>Feel free to contact me on <ExternalLink href="https://www.linkedin.com/in/agustin-gorgni-95607360/">Linkedin</ExternalLink></p>
                 </Section.Description>
                 <Section.Image className={styles.contact__image}>
