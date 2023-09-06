@@ -35,7 +35,7 @@ const Home = () => {
                 <Section.Description className={styles.about__description}>
                     <h3 className={styles.about__title}>Welcome to Famouser!</h3>
                     <p className={styles.about__p}>This is a very simple project where you can browse for your favorite artist and learn everything about him/her!</p>
-                    <p className={styles.about__p}>This project was created using <ExternalLink href='https://vitejs.dev/'>Vite</ExternalLink>, <ExternalLink href='https://react.dev/'>React</ExternalLink>, <ExternalLink href='https://sass-lang.com/'>Sass</ExternalLink> and <ExternalLink href='https://reactrouter.com/en/main'>React Router Dom</ExternalLink>. Its goal is to learn how React Router Dom 6 works..and it's just fantastic!</p>
+                    <p className={styles.about__p}>This project was created using <ExternalLink href='https://vitejs.dev/'>Vite</ExternalLink>, <ExternalLink href='https://react.dev/'>React</ExternalLink>, <ExternalLink href='https://sass-lang.com/'>Sass</ExternalLink> and <ExternalLink href='https://reactrouter.com/en/main'>React Router Dom</ExternalLink>. Its goal is to learn how React Router Dom 6 works..and it is just fantastic!</p>
                     <p className={styles.about__p}>Also, this app use the service of <ExternalLink href='https://api-ninjas.com/'>API Ninjas</ExternalLink> to fetch all the displayed Data. They have a lot of demo APIs if you want to check them!</p>
                     <p className={styles.about__p}>Thanks for stoping by and have a good one!</p>
                 </Section.Description>
