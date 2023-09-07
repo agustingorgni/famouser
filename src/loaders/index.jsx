@@ -1,5 +1,3 @@
-import { getCelebrities, openDatabase } from "../utils/indexedDB";
-
 const CELEBRITY_API_URL = 'https://api.api-ninjas.com/v1/celebrity';
 const COUNTRY_API_URL = 'https://restcountries.com/v3.1/alpha';
 
@@ -57,7 +55,5 @@ export async function DescriptionLoader({ params }) {
 }
 
 export async function FavoritesLoader() {
-    const db = await openDatabase();
-    const favorites = await getCelebrities(db);
-    return favorites;
+    return [];
 }

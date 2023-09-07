@@ -3,9 +3,6 @@ import { Link, useFetcher, useLoaderData } from "react-router-dom"
 import styles from './styles.module.scss';
 import { Tag } from "../../components/Tag";
 import { MALE } from "../../utils/enums/gender";
-import { useDatabase } from "../../hooks/useDatabase";
-import { useEffect, useState } from "react";
-import { isFavorite } from "../../utils/indexedDB";
 
 const tagFormatter = (item) => String(item).replace(/_/g, ' ');
 
@@ -21,15 +18,8 @@ const Description = () => {
         is_alive: isAlive,
         net_worth: netWorth,
     } = useLoaderData();
-    const [database] = useDatabase();
-    const [fav, setFav] = useState(false); 
+ 
     const fetcher = useFetcher();
-
-    useEffect(() => {
-        if (database && (fetcher.formData || !fetcher)) {
-            isFavorite(database, name).then(response => setFav(response))
-        }
-    }, [database, setFav, name, fetcher]);
 
     const avatar =
         gender === MALE
@@ -46,7 +36,7 @@ const Description = () => {
                     <h2 className={styles.detail__title}>{name} {!isAlive && '✝️'}</h2>
                     <fetcher.Form method="POST" action="/famouser/favorites">
                         <input name="name" value={name} type="hidden" />
-                        <button name="favorite" value={fav}>{ fav ? 'Remove from favorites' : 'Add to favorites' }</button>
+                        <button name="favorite" value="Nose">Favorite</button>
                     </fetcher.Form>
                 </div>
                 <div className={styles.detail__tags}>
