@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.5](https://github.com/mokkapps/changelog-generator-demo/compare/v0.0.4...v0.0.5) (2023-09-08)
+
+
+### Features
+
+* **Firebase:** firebase added to authenticate ([8478233](https://github.com/mokkapps/changelog-generator-demo/commits/847823392eac72834cd73367c626e70bcc240d85))
+
 ### [0.0.4](https://github.com/mokkapps/changelog-generator-demo/compare/v0.0.3...v0.0.4) (2023-09-06)
 
 
