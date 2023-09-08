@@ -21,7 +21,7 @@ const Home = () => {
                 </Section.Description>
                 <div className={styles.searchbox}>
                     <Form action='stars' className={styles.searchbox__form}>
-                        <Input name="q" className={styles.searchbox__input} placeholder="e.g. Tom Delonge" type="string" />
+                        <Input name="q" placeholder="e.g. Tom Delonge" type="string" />
                         <button className={styles.searchbox__button} type='submit'>
                             <SearchIcon width={40} height={40} />
                         </button>

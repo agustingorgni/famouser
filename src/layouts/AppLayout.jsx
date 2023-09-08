@@ -5,6 +5,7 @@ import styles from './styles.module.scss';
 import { ExternalLink } from '../components/ExternalLink';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { auth } from '../../firebase';
+import { Button } from '../components/Button';
 
 export default function AppLayout() {
     const headerRef = useRef(null);
@@ -63,9 +64,11 @@ export default function AppLayout() {
         <div className={styles.container}>
             {searching && <div className={styles.overlay} />}
             <header ref={headerRef} className={styles.header}>
-                <Link to="/famouser">Famouser</Link>
-                {userLogged && <button onClick={handleFavorites}>Favorites</button>}
-                <button onClick={handleAuth}>{userLogged ? 'Log out' : 'Log in'}</button>
+                <Link className={styles.header__logo} to="/famouser">Famouser</Link>
+                <div className={styles.header__cta}>
+                    {userLogged && <Button style='danger' onClick={handleFavorites}>Favorites</Button>}
+                    <Button onClick={handleAuth}>{userLogged ? 'Log out' : 'Log in'}</Button>
+                </div>
             </header>
             <section className={styles.body}>
                 <Outlet />
