@@ -4,7 +4,7 @@ import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } 
 import AppLayout from './layouts/AppLayout';
 import List from './pages/List';
 import { DescriptionLoader, FavoritesLoader, ListLoader } from './loaders';
-import { LoginAction } from './actions';
+import { LoginAction, SignupAction } from './actions';
 import { Description } from './pages/Description';
 import { Home } from './pages/Home';
 
@@ -21,7 +21,7 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path='/famouser/stars/:name' element={<Description />} errorElement={<ErrorPage />} loader={DescriptionLoader} />
     <Route path='/famouser/favorites' element={<Favorites />} loader={FavoritesLoader} />
     <Route path='/famouser/login' element={<Login />} action={LoginAction} />
-    <Route path='/famouser/signup' element={<Signup />} />
+    <Route path='/famouser/signup' element={<Signup />} action={SignupAction} />
     <Route path='/famouser/*' element={<ErrorPage />} />
   </Route>
 ));

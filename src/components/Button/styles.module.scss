@@ -1,0 +1,19 @@
+.button {
+    border: 2px solid var(--white);
+    color: var(--white);
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+
+    &--info {
+        background-color: var(--lightblue);
+    }
+
+    &--danger {
+        background-color: var(--orange);
+    }
+
+    &--s {
+        padding: 10px;
+    }
+}
