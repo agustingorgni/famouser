@@ -8,6 +8,8 @@ import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { auth } from '../../firebase';
 import { Button } from '../components/Button';
 import { IS_CUSTOM_LAYOUT } from '../utils/enums/layouts';
+import { Snackbar } from '../components/Snackbar';
+import { useFamouserState } from '../hooks/useFamouserState';
 
 export default function AppLayout() {
     const headerRef = useRef(null);
@@ -61,6 +63,7 @@ export default function AppLayout() {
 
     const navigation = useNavigation();
     const { pathname } = useLocation();
+    const { state: { snackbar } } = useFamouserState();
 
     const searching = navigation.location ? true : false;
 
@@ -83,6 +86,7 @@ export default function AppLayout() {
                 <hr className={styles.footer__divider} />
                 <span>Famouser was created with 💓by <ExternalLink href="https://github.com/agustingorgni">Agustin Gorgni</ExternalLink></span>
             </section>}
+            <Snackbar show={snackbar.show} type={snackbar.type} message={snackbar.message} />
         </div>
     );
 }
