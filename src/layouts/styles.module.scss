@@ -21,7 +21,6 @@
     align-items: center;
     box-sizing: border-box;
     padding: 1em;
-    background-color: var(--lightblue);
     color: var(--white);
     font-size: 28px;
     letter-spacing: 2px;
@@ -29,10 +28,14 @@
     text-transform: uppercase;
     position: absolute;
 
-    &__logo {
-        @media (max-width: 500px) {
-            display: none;
-        }
+    &--white {
+        color: var(--black);
+        background-color: var(--white);
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    &--lightblue {
+        background-color: var(--lightblue);
     }
 
     a {

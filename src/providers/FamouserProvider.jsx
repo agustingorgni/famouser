@@ -9,7 +9,7 @@ export const FamouserProvider = ({ children }) => {
 
         switch (type) {
             case 'CHANGE_HEADER_VISIBILITY': {
-                return { ...state, header_visible: payload };
+                return { ...state, header: payload };
             }
             default: {
                 return state;
@@ -18,7 +18,7 @@ export const FamouserProvider = ({ children }) => {
     };
 
     const initialState = {
-        header_visible: true,
+        header: true,
     };
 
     const [state, dispatch] = useReducer(reducer, initialState);

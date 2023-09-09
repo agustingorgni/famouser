@@ -10,15 +10,17 @@ const Login = () => {
 
     return (
         <section className={styles.login}>
-            <div className={styles.login__container}>
-                <Form className={styles.login__form} method='post'>
-                    <Input className={styles.login__input} placeholder='Your e-mail' name='email' type='text' />
-                    <Input className={styles.login__input} placeholder='Your password' name='password' type='password' />
-                    <Button className={styles.login__button} type='submit'>Login</Button>
+            <div className={styles.login__image}>
+                <img src='/famouser/img/login.jpg' alt="login cover" height="100%" width="100%" loading='lazy' />
+            </div>
+            <div className={styles.login__content}>
+                <h2 className={styles.login__title}>Welcome back!</h2>
+                <Form className={styles.form} method='post'>
+                    <Input style='outline' className={styles.login__input} placeholder='Your e-mail' name='email' type='text' />
+                    <Input style='outline' className={styles.login__input} placeholder='Your password' name='password' type='password' />
+                    <Button style='danger' className={styles.login__button} type='submit'>Login</Button>
                 </Form>
-
                 {data?.error && <p className={styles.login__message}>{data.message}</p>}
-
                 <Divider className={styles.login__divider} />
                 <p>
                     No account yet? {' '}
