@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 
 import styles from './styles.module.scss';
 
-const Input = forwardRef(({ className, name, placeholder, type, defaultValue }, ref) => {
+const Input = forwardRef(({ className, style, name, placeholder, type, defaultValue }, ref) => {
     return (
         <input
-            className={classNames(className, styles.input)}
+            className={classNames(styles.input, styles[`input--${style}`], className)}
             ref={ref}
             name={name}
             type={type}
@@ -20,6 +20,7 @@ const Input = forwardRef(({ className, name, placeholder, type, defaultValue }, 
 Input.displayName = 'Input';
 
 Input.propTypes = {
+    style: PropTypes.string,
     placeholder: PropTypes.string,
     className: PropTypes.string,
     name: PropTypes.string,
@@ -28,6 +29,7 @@ Input.propTypes = {
 };
 
 Input.defaultValues = {
+    style: 'normal',
     placeholder: '',
     className: '',
     name: '',
