@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.7](https://github.com/mokkapps/changelog-generator-demo/compare/v0.0.6...v0.0.7) (2023-09-09)
+
+
+### Features
+
+* **Providers:** famouser provider added ([01956da](https://github.com/mokkapps/changelog-generator-demo/commits/01956da539ff1a7b752961ec7216c533e35ef8f3))
+
 ### [0.0.6](https://github.com/mokkapps/changelog-generator-demo/compare/v0.0.7...v0.0.6) (2023-09-08)
 
 ### [0.0.5](https://github.com/mokkapps/changelog-generator-demo/compare/v0.0.4...v0.0.5) (2023-09-08)
