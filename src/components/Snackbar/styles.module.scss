@@ -1,0 +1,25 @@
+.snackbar {
+    position: absolute;
+    bottom: 15px;
+    width: 50%;
+    margin: 0 25%;
+    text-align: center;
+    color: var(--white);
+    padding: 15px;
+    border-radius: 8px;
+    text-transform: uppercase;
+    box-sizing: border-box;
+
+    @media (max-width: 800px) {
+        width: 80%;
+        margin: 0 10%;
+    }
+
+    &--error {
+        background-color: var(--orange);
+    }
+
+    &--success {
+        background-color: var(--green);
+    }
+}

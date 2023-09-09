@@ -4,9 +4,22 @@ import styles from './styles.module.scss';
 import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
 import { Divider } from '../../components/Divider';
+import { useEffect } from 'react';
+import { useFamouserState } from '../../hooks/useFamouserState';
+import { HIDE_SNACKBAR, SHOW_SNACKBAR } from '../../utils/enums/actions';
 
 const Signup = () => {
     const data = useActionData();
+    const { dispatch } = useFamouserState();
+
+    useEffect(() => {
+        if (data?.error) {
+            dispatch({ type: SHOW_SNACKBAR, payload: { type: 'error', message: data.message } });
+            setTimeout(() => {
+                dispatch({ type: HIDE_SNACKBAR })
+            }, 3000)
+        }
+    }, [data, dispatch]);
 
     return (
         <section className={styles.signup}>
@@ -20,7 +33,6 @@ const Signup = () => {
                     <Input style='outline' className={styles.signup__input} placeholder='Your password' name='password' type='password' />
                     <Button style='danger' className={styles.signup__button} type='submit'>Sign up</Button>
                 </Form>
-                {data?.error && <p className={styles.signup__message}>{data.message}</p>}
                 <Divider className={styles.signup__divider} />
                 <p>
                     Already have an account? {' '}
