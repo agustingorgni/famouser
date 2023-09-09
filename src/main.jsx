@@ -13,6 +13,7 @@ import { Error as ErrorPage } from './pages/Error';
 import { Favorites } from './pages/Favorites';
 import { Login } from './pages/Login';
 import Signup from './pages/Signup';
+import { FamouserProvider } from './providers/FamouserProvider';
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route element={<AppLayout />}>
@@ -27,5 +28,7 @@ const router = createBrowserRouter(createRoutesFromElements(
 ));
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <RouterProvider router={router} />,
+  <FamouserProvider>
+    <RouterProvider router={router} />
+  </FamouserProvider>,
 )

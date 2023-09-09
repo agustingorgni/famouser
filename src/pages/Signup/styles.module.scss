@@ -1,6 +1,32 @@
 .signup {
-    padding-top: 100px;
+    padding-top: 60px;
     text-align: center;
+    height: calc(100vh - 65px);
+    display: flex;
+
+    &__image {
+        flex: 1;
+
+        @media (max-width: 700px) {
+            display: none;
+        }
+
+        img {
+            object-fit: cover;
+        }
+    }
+
+    &__title {
+        margin-bottom: 30px;
+    }
+
+    &__content {
+        flex: 1;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        text-transform: uppercase;
+    }
 
     &__container {
         display: flex;
@@ -16,27 +42,18 @@
     }
 
     &__divider {
-        margin-top: 40px;
+        margin-top: 20px;
         width: 50%;
     }
+}
 
-    &__message {
-        color: var(--orange);
-    }
+.form {
+    display: flex;
+    gap: 10px;
+    padding: 2% 20%;
+    flex-flow: column nowrap;
 
-    &__button {
-        margin-top: 30px;
-        border: 3px solid var(--gray);
-    }
-
-    &__input {
-        border: 1px solid gray;
-        border-radius: 8px;
-    }
-
-    &__form {
-        display: flex;
-        flex-flow: column nowrap;
-        gap: 10px;
+    @media (max-width: 700px) {
+        padding: 2% 5%;
     }
 }

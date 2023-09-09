@@ -5,4 +5,11 @@
     border: none;
     font-size: 20px;
     border-radius: inherit;
+
+    &--outline {
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        background-color: var(--lightgray);
+        border-bottom: 1px solid var(--black);
+    }
 }
