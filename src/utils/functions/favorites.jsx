@@ -4,18 +4,19 @@ import { db } from "../../../firebase";
 
 export const storeFavorites = async (user) => {
     let favorites;
-
     const document = doc(db, "favorites", user);
     const retrievedDocument = await getDoc(document);
 
-    if (retrievedDocument.exists()) {
-        const { names } = retrievedDocument.data();
-        favorites = names;
-    } else {
-        favorites = [];
-    }
-
-    localStorage.setItem('famouser_favorites', JSON.stringify(favorites));
+    return new Promise((resolve) => {
+        if (retrievedDocument.exists()) {
+            const { names } = retrievedDocument.data();
+            favorites = names;
+        } else {
+            favorites = [];
+        }
+        localStorage.setItem('famouser_favorites', JSON.stringify(favorites));
+        resolve(favorites);
+    });
 };
 
 export const deleteFavorites = () => {

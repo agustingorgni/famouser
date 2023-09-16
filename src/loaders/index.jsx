@@ -54,6 +54,6 @@ export async function DescriptionLoader({ params }) {
         ...celebrity[0],
         country: countryItem?.name?.official ?? null,
         flag: countryItem?.flags?.png ?? null,
-        isFavorite: favorites.includes(name.replace('-', ' ')),
+        isFavorite: (favorites && favorites.includes(name.replace('-', ' '))) ? true : false,
     };
 }

@@ -1,4 +1,4 @@
-import { useFetcher, useLoaderData } from "react-router-dom"
+import { useFetcher, useLoaderData, useNavigate } from "react-router-dom"
 
 import { MALE } from "../../utils/enums/gender";
 import { useEffect, useState } from "react";
@@ -21,17 +21,22 @@ const Description = () => {
     const [isFav, setIsFav] = useState(isFavorite);
     const [buttonDisabled, setButtonDisabled] = useState(false);
     const fetcher = useFetcher();
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (fetcher.state === 'loading') {
             if(fetcher.data) {
-                setIsFav(() => {
-                    if (fetcher.data.message === 'added') {
-                        return true
-                    } else {
-                        return false
-                    }
-                })
+                if (fetcher.data.error) {
+                    navigate(fetcher.data.redirect);
+                } else {
+                    setIsFav(() => {
+                        if (fetcher.data.message === 'added') {
+                            return true
+                        } else {
+                            return false
+                        }
+                    });
+                }
             }
         } 
         
@@ -40,12 +45,9 @@ const Description = () => {
         } else {
             setButtonDisabled(false);
         }
-    }, [fetcher]);
+    }, [fetcher, navigate]);
 
-    const avatar =
-        gender === MALE
-            ? '/famouser/img/male_avatar.jpg'
-            : '/famouser/img/female_avatar.png';
+    const avatar = gender === MALE ? '/famouser/img/male_avatar.jpg' : '/famouser/img/female_avatar.png';
 
     const mappedProps = {
         avatar,

@@ -1,14 +1,14 @@
-import { useActionData, useNavigate } from 'react-router-dom';
+import { useActionData, useNavigate, useSearchParams } from 'react-router-dom';
 
 import { useFamouserState } from '../../hooks/useFamouserState';
 import { useEffect } from 'react';
 import { HIDE_SNACKBAR, SHOW_SNACKBAR } from '../../utils/enums/actions';
-import { storeFavorites } from '../../utils/functions/favorites';
 import { LoginView } from './view';
 
 const Login = () => {
     const data = useActionData();
     const navigate = useNavigate();
+    const [searchParams] = useSearchParams();
     const { dispatch } = useFamouserState();
 
     useEffect(() => {
@@ -16,14 +16,17 @@ const Login = () => {
             if (data.response !== 'ok') {
                 dispatch({ type: SHOW_SNACKBAR, payload: { type: 'error', message: data.message } });
                 setTimeout(() => {
-                    dispatch({ type: HIDE_SNACKBAR })
-                }, 3000)
+                    dispatch({ type: HIDE_SNACKBAR });
+                }, 3000);
             } else {
-                storeFavorites(data.user);
-                navigate(data.redirect)
+                if (searchParams.get('callback')) {
+                    navigate(searchParams.get('callback'));
+                } else {
+                    navigate(data.redirect);
+                }
             }
         }
-    }, [data, dispatch, navigate]);
+    }, [data, dispatch, navigate, searchParams]);
 
     return <LoginView />;
 }

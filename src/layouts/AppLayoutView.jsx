@@ -49,8 +49,8 @@ AppLayoutView.displayName = 'AppLayoutView';
 AppLayoutView.propTypes = {
     searching: PropTypes.bool.isRequired,
     headerColor: PropTypes.string.isRequired,
-    isCustomLayout: PropTypes.bool.isRequired,
-    user: PropTypes.shape({}).isRequired,
+    isCustomLayout: PropTypes.bool,
+    user: PropTypes.shape({}),
     snackbar: PropTypes.shape({
         show: PropTypes.bool,
         type: PropTypes.string,
@@ -60,4 +60,9 @@ AppLayoutView.propTypes = {
         handleFavorites: PropTypes.func.isRequired,
         handleAuth: PropTypes.func.isRequired,
     }).isRequired,
+};
+
+AppLayoutView.defaultProps = {
+    user: null,
+    isCustomLayout: false,
 };
