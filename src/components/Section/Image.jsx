@@ -1,12 +1,10 @@
 import PropTypes from 'prop-types';
 
-const Image = ({ className, children, ...props }) => {
-    return (
-        <div className={className} {...props}>
-            {children}
-        </div>
-    );
-};
+const Image = ({ className, children, ...props }) => (
+    <div className={className} {...props}>
+        {children}
+    </div>
+);
 
 Image.propTypes = {
     className: PropTypes.string,

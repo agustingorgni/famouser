@@ -3,17 +3,15 @@ import classNames from 'classnames';
 
 import styles from './styles.module.scss';
 
-export const Button = ({ children, className, style, size, onClick, ...rest }) => {
-    return (
-        <button
-            {...rest}
-            className={classNames(styles.button, styles[`button--${style}`], styles[`button--${size}`], className)}
-            onClick={onClick}
-        >
-            {children}
-        </button>
-    );
-};
+export const Button = ({ children, className, style, size, onClick, ...rest }) => (
+    <button
+        {...rest}
+        className={classNames(styles.button, styles[`button--${style}`], styles[`button--${size}`], className)}
+        onClick={onClick}
+    >
+        {children}
+    </button>
+);
 
 Button.propTypes = {
     children: PropTypes.node.isRequired,

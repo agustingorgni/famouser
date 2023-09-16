@@ -10,7 +10,7 @@ export const Snackbar = ({ show, type, message }) => {
 
     return (
         <div className={classNames(styles.snackbar, styles[`snackbar--${type}`])}>
-            { message }
+            {message}
         </div>
     );
 };
@@ -18,9 +18,10 @@ export const Snackbar = ({ show, type, message }) => {
 Snackbar.propTypes = {
     show: PropTypes.bool.isRequired,
     type: PropTypes.string,
-    message: PropTypes.string.isRequired,
+    message: PropTypes.string,
 };
 
 Snackbar.defaultProps = {
     type: 'success',
+    message: '',
 };
