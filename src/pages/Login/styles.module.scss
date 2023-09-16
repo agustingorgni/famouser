@@ -26,6 +26,10 @@
         flex-flow: column nowrap;
         justify-content: center;
         text-transform: uppercase;
+
+        @media (max-width: 500px) {
+            justify-content: space-evenly;
+        }
     }
 
     &__container {

@@ -1,10 +1,8 @@
 import PropTypes from 'prop-types';
 
-const ExternalLink = ({ href, target, children }) => {
-    return (
-        <a href={href} target={target} rel="noopener noreferrer">{children}</a>
-    );
-};
+const ExternalLink = ({ href, target, children }) => (
+    <a href={href} target={target} rel="noopener noreferrer">{children}</a>
+);
 
 ExternalLink.propTypes = {
     href: PropTypes.string.isRequired,

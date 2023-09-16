@@ -1,12 +1,10 @@
 import PropTypes from 'prop-types';
 
-const Description = ({ className, children, ...props }) => {
-    return (
-        <div className={className} {...props}>
-            {children}
-        </div>
-    );
-};
+const Description = ({ className, children, ...props }) => (
+    <div className={className} {...props}>
+        {children}
+    </div>
+);
 
 Description.propTypes = {
     className: PropTypes.string,

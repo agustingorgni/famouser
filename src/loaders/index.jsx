@@ -1,3 +1,5 @@
+import { getFavorites } from "../utils/functions/favorites";
+
 const CELEBRITY_API_URL = 'https://api.api-ninjas.com/v1/celebrity';
 const COUNTRY_API_URL = 'https://restcountries.com/v3.1/alpha';
 
@@ -22,6 +24,7 @@ export async function ListLoader({ request }) {
 
 export async function DescriptionLoader({ params }) {
     const { name } = params;
+    const favorites = getFavorites();
 
     const response = await fetch(`${CELEBRITY_API_URL}?name=${name.replace('-', ' ')}`, {
         headers: {
@@ -51,9 +54,6 @@ export async function DescriptionLoader({ params }) {
         ...celebrity[0],
         country: countryItem?.name?.official ?? null,
         flag: countryItem?.flags?.png ?? null,
+        isFavorite: favorites.includes(name.replace('-', ' ')),
     };
-}
-
-export async function FavoritesLoader() {
-    return [];
 }

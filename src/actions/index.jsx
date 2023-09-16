@@ -2,6 +2,7 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'fire
 import { redirect } from 'react-router-dom';
 
 import { auth } from '../../firebase';
+import { addToFavorites, removeFavorite } from '../utils/functions/favorites';
 
 export async function LoginAction({ request }) {
     const formData = await request.formData();
@@ -9,11 +10,10 @@ export async function LoginAction({ request }) {
     const password = formData.get('password');
 
     try {
-        await signInWithEmailAndPassword(auth, email, password);
-        return redirect('/famouser/');
+        const { user } = await signInWithEmailAndPassword(auth, email, password);
+        return { response: 'ok', user: user.uid, redirect: '/famouser/' };
     } catch(error) {
-        console.log(error);
-        return { error: true, message: 'Authentication failed' };
+        return { response: 'error', message: error.message };
     }
 }
 
@@ -28,5 +28,24 @@ export async function SignupAction({ request }) {
     } catch(error) {
         console.log(error);
         return { error: true, message: 'Something went wrong' };
+    }
+}
+
+export async function DescriptionAction({ request }) {
+    const formData = await request.formData();
+    const isFavorite = formData.get('is_favorite');
+    const name = formData.get('name');
+    const uid = await auth.currentUser.uid;
+
+    if (isFavorite === "false") {
+        const response = await addToFavorites(name, uid);
+        return {
+            message: response ? 'added' : 'failed to add'
+        }
+    } else {
+        const response = await removeFavorite(name, uid);
+        return {
+            message: response ? 'deleted' : 'failed to delete'
+        }
     }
 }

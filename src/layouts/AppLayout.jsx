@@ -1,20 +1,28 @@
-import { useEffect, useRef, useState } from 'react';
-import { Link, Outlet, useLocation, useNavigate, useNavigation } from 'react-router-dom';
-import classNames from 'classnames';
+import { useEffect, useRef } from 'react';
+import { useLocation, useNavigate, useNavigation } from 'react-router-dom';
+import { signOut } from 'firebase/auth';
 
 import styles from './styles.module.scss';
-import { ExternalLink } from '../components/ExternalLink';
-import { onAuthStateChanged, signOut } from 'firebase/auth';
+
 import { auth } from '../../firebase';
-import { Button } from '../components/Button';
 import { IS_CUSTOM_LAYOUT } from '../utils/enums/layouts';
-import { Snackbar } from '../components/Snackbar';
 import { useFamouserState } from '../hooks/useFamouserState';
+import { useAuth } from '../hooks/useAuth';
+import { deleteFavorites } from '../utils/functions/favorites';
+import { AppLayoutView } from './AppLayoutView';
 
 export default function AppLayout() {
     const headerRef = useRef(null);
     const navigate = useNavigate();
-    const [userLogged, setUserLogged] = useState(false);
+    const { user } = useAuth();
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        }
+    }, []);
 
     const handleScroll = () => {
         const scrollOffset = window.scrollY;
@@ -28,26 +36,10 @@ export default function AppLayout() {
         }
     };
 
-    useEffect(() => {
-        window.addEventListener('scroll', handleScroll);
-        // TODO: Ver si se puede llevar al loader
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                console.log(user.uid);
-                setUserLogged(true);
-            } else {
-                setUserLogged(false);
-            }
-        });
-
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        }
-    }, []);
-
     const handleAuth = () => {
-        if (userLogged) {
+        if (user) {
             signOut(auth).then(() => {
+                deleteFavorites();
                 navigate('/famouser/');
             }).catch((error) => {
                 console.log(error.message)
@@ -67,26 +59,20 @@ export default function AppLayout() {
 
     const searching = navigation.location ? true : false;
 
-    const HEADER_COLOR = IS_CUSTOM_LAYOUT[pathname] ? 'white' : 'lightblue';
+    const headerColor = IS_CUSTOM_LAYOUT[pathname] ? 'white' : 'lightblue';
+    const isCustomLayout = IS_CUSTOM_LAYOUT[pathname];
 
-    return (
-        <div className={styles.container}>
-            {searching && <div className={styles.overlay} />}
-            <header ref={headerRef} className={classNames(styles.header, styles[`header--${HEADER_COLOR}`])}>
-                <Link to="/famouser">Famouser</Link>
-                <div className={styles.header__cta}>
-                    {userLogged && <Button style='danger' onClick={handleFavorites}>Favorites</Button>}
-                    {!IS_CUSTOM_LAYOUT[pathname] && <Button onClick={handleAuth}>{userLogged ? 'Log out' : 'Log in'}</Button>}
-                </div>
-            </header>
-            <section className={styles.body}>
-                <Outlet />
-            </section>
-            {!IS_CUSTOM_LAYOUT[pathname] && <section className={styles.footer}>
-                <hr className={styles.footer__divider} />
-                <span>Famouser was created with 💓by <ExternalLink href="https://github.com/agustingorgni">Agustin Gorgni</ExternalLink></span>
-            </section>}
-            <Snackbar show={snackbar.show} type={snackbar.type} message={snackbar.message} />
-        </div>
-    );
+    const mappedProps = {
+        searching,
+        headerColor,
+        isCustomLayout,
+        user,
+        snackbar,
+        methods: {
+            handleFavorites,
+            handleAuth,
+        },
+    };
+
+    return <AppLayoutView ref={headerRef} {...mappedProps} />;
 }

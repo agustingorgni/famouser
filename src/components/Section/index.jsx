@@ -3,13 +3,11 @@ import PropTypes from 'prop-types';
 import { Image } from './Image';
 import { Description } from './Description';
 
-const Section = ({ className, children, ...props }) => {
-    return (
-        <section className={className} {...props}>
-            {children}
-        </section>
-    );
-};
+const Section = ({ className, children, ...props }) => (
+    <section className={className} {...props}>
+        {children}
+    </section>
+);
 
 Section.Image = Image;
 Section.Description = Description;

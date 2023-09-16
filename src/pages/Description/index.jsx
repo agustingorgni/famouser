@@ -1,10 +1,8 @@
-import { Link, useFetcher, useLoaderData } from "react-router-dom"
+import { useFetcher, useLoaderData } from "react-router-dom"
 
-import styles from './styles.module.scss';
-import { Tag } from "../../components/Tag";
 import { MALE } from "../../utils/enums/gender";
-
-const tagFormatter = (item) => String(item).replace(/_/g, ' ');
+import { useEffect, useState } from "react";
+import { DescriptionView } from "./view";
 
 const Description = () => {
     const {
@@ -17,60 +15,55 @@ const Description = () => {
         height,
         is_alive: isAlive,
         net_worth: netWorth,
+        isFavorite,
     } = useLoaderData();
- 
+
+    const [isFav, setIsFav] = useState(isFavorite);
+    const [buttonDisabled, setButtonDisabled] = useState(false);
     const fetcher = useFetcher();
+
+    useEffect(() => {
+        if (fetcher.state === 'loading') {
+            if(fetcher.data) {
+                setIsFav(() => {
+                    if (fetcher.data.message === 'added') {
+                        return true
+                    } else {
+                        return false
+                    }
+                })
+            }
+        } 
+        
+        if (fetcher.state === 'submitting') {
+            setButtonDisabled(true);
+        } else {
+            setButtonDisabled(false);
+        }
+    }, [fetcher]);
 
     const avatar =
         gender === MALE
-        ? '/famouser/img/male_avatar.jpg'
-        : '/famouser/img/female_avatar.png';
+            ? '/famouser/img/male_avatar.jpg'
+            : '/famouser/img/female_avatar.png';
 
-    return (
-        <section className={styles.detail}>
-            <div className={styles.detail__picture}>
-                <img src={avatar} width="100%" height="100%" alt={name} loading="lazy" />
-            </div>
-            <div className={styles.detail__information}>
-                <div className={styles.detail__header}>
-                    <h2 className={styles.detail__title}>{name} {!isAlive && '✝️'}</h2>
-                    <fetcher.Form method="POST" action="/famouser/favorites">
-                        <input name="name" value={name} type="hidden" />
-                        <button name="favorite" value="Nose">Favorite</button>
-                    </fetcher.Form>
-                </div>
-                <div className={styles.detail__tags}>
-                    { occupation && occupation.map((item, i) => <Tag key={i}>{tagFormatter(item)}</Tag>) }
-                </div>
-                <p>
-                    <strong>Home country:</strong>
-                    <span>{country ?? '-'}</span>
-                    { flag && <span>
-                        <img src={flag} alt={country} width="100%" height="100%" loading="lazy" />
-                    </span> }
-                </p>
-                <p>
-                    <strong>Gender:</strong>
-                    <span>{gender ?? '-'}</span>
-                </p>
-                <p>
-                    <strong>Birthday:</strong>
-                    <span>{birthday ?? '-'}</span>
-                </p>
-                <p>
-                    <strong>Height:</strong>
-                    <span>{height ?? '-'}</span>
-                </p>
-                <p>
-                    <strong>Net worth:</strong>
-                    <span>$ {Number(netWorth).toLocaleString() ?? '-'}</span>
-                </p>
-                <p className={styles.detail__back}>
-                    <Link to="/famouser/">Back home</Link>
-                </p>
-            </div>
-        </section>
-    );
+    const mappedProps = {
+        avatar,
+        name,
+        isAlive,
+        isFav,
+        buttonDisabled,
+        occupation,
+        flag,
+        country,
+        gender,
+        birthday,
+        height,
+        netWorth,
+        fetcher,
+    };
+
+    return <DescriptionView {...mappedProps} />
 };
 
 export {

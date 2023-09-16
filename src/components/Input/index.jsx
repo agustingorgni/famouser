@@ -4,18 +4,16 @@ import PropTypes from 'prop-types';
 
 import styles from './styles.module.scss';
 
-const Input = forwardRef(({ className, style, name, placeholder, type, defaultValue }, ref) => {
-    return (
-        <input
-            className={classNames(styles.input, styles[`input--${style}`], className)}
-            ref={ref}
-            name={name}
-            type={type}
-            defaultValue={defaultValue}
-            placeholder={placeholder}
-        />
-    )
-});
+const Input = forwardRef(({ className, style, name, placeholder, type, defaultValue }, ref) => (
+    <input
+        className={classNames(styles.input, styles[`input--${style}`], className)}
+        ref={ref}
+        name={name}
+        type={type}
+        defaultValue={defaultValue}
+        placeholder={placeholder}
+    />
+));
 
 Input.displayName = 'Input';
 
