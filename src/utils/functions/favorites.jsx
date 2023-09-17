@@ -47,13 +47,19 @@ export const removeFavorite = async (name, uid) => {
 
     const document = doc(db, "favorites", uid);
 
-    return setDoc(document, { names: filteredArray })
-        .then(() => {
+    return new Promise((resolve, reject) => {
+        try {
+            setDoc(document, { names: filteredArray });
             localStorage.setItem('famouser_favorites', JSON.stringify(filteredArray));
-            return true;
-        })
-        .catch(e => {
-            console.log('Se ha producido un error', e);
-            return false;
-        });
+            resolve({
+                status: 'ok',
+                data: filteredArray
+            });
+        } catch (e) {
+            reject({
+                status: 'error',
+                data: favorites
+            });
+        }
+    });
 }

@@ -57,3 +57,10 @@ export async function DescriptionLoader({ params }) {
         isFavorite: (favorites && favorites.includes(name.replace('-', ' '))) ? true : false,
     };
 }
+
+export async function FavoritesLoader() {
+    const favorites = getFavorites();
+    return {
+        favorites
+    };
+}

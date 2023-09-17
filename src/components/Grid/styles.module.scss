@@ -1,0 +1,26 @@
+.grid {
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+
+    & tr:nth-child(odd) {
+        background-color: var(--lightgray);
+    }
+
+    td {
+        padding: 20px;
+    }
+}
+
+.header {
+    display: table-header-group;
+    padding: 5px;
+    background-color: var(--teal);
+    color: var(--white);
+    width: inherit;
+}
+
+.th {
+    padding: 10px;
+    color: white;
+}
