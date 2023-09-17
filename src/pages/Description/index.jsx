@@ -47,7 +47,7 @@ const Description = () => {
         }
     }, [fetcher, navigate]);
 
-    const avatar = gender === MALE ? '/famouser/img/male_avatar.jpg' : '/famouser/img/female_avatar.png';
+    const avatar = gender === MALE ? '/famouser/img/male_avatar.png' : '/famouser/img/female_avatar.png';
 
     const mappedProps = {
         avatar,

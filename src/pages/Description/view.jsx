@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import styles from './styles.module.scss';
 
 import { Tag } from "../../components/Tag";
+import HeartIcon from '../../components/HeartIcon';
 
 const tagFormatter = (item) => String(item).replace(/_/g, ' ');
 
@@ -23,7 +24,7 @@ export const DescriptionView = ({
     fetcher,
 }) => (
     <section className={styles.detail}>
-        <div className={styles.detail__picture}>
+        <div className={styles.detail__picture} style={{ backgroundImage: `url(${flag})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
             <img src={avatar} width="100%" height="100%" alt={name} loading="lazy" />
         </div>
         <div className={styles.detail__information}>
@@ -31,7 +32,7 @@ export const DescriptionView = ({
                 <h2 className={styles.detail__title}>{name} {!isAlive && '✝️'}</h2>
                 <fetcher.Form method="post">
                     <input name="name" type="hidden" value={name} />
-                    <button name="is_favorite" value={isFav} disabled={buttonDisabled}>{isFav ? 'Remove' : 'Add'}</button>
+                    <button className={styles.detail__heart} name="is_favorite" value={isFav} disabled={buttonDisabled}>{isFav ? <HeartIcon /> : <HeartIcon color="white" />}</button>
                 </fetcher.Form>
             </div>
             <div className={styles.detail__tags}>
@@ -40,9 +41,6 @@ export const DescriptionView = ({
             <p>
                 <strong>Home country:</strong>
                 <span>{country ?? '-'}</span>
-                {flag && <span>
-                    <img src={flag} alt={country} width="100%" height="100%" loading="lazy" />
-                </span>}
             </p>
             <p>
                 <strong>Gender:</strong>
