@@ -25,10 +25,10 @@ export const AppLayoutView = forwardRef((
     <div className={styles.container}>
         {searching && <div className={styles.overlay} />}
         <header ref={headerRef} className={classNames(styles.header, styles[`header--${headerColor}`])}>
-            <Link to="/famouser">Famouser</Link>
+            <Link className={styles.header__logo} to="/famouser">Famouser</Link>
             <div className={styles.header__cta}>
-                {user && <Button style='danger' onClick={handleFavorites}>Favorites</Button>}
-                {!isCustomLayout && <Button onClick={handleAuth}>{user ? 'Log out' : 'Log in'}</Button>}
+                {user && <Button className={styles.header__button} style='danger' onClick={handleFavorites}>Favorites</Button>}
+                {!isCustomLayout && <Button className={styles.header__button} onClick={handleAuth}>{user ? 'Log out' : 'Log in'}</Button>}
             </div>
         </header>
         <section className={styles.body}>

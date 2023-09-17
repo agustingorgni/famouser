@@ -56,3 +56,12 @@ export async function DescriptionAction({ request }) {
         }
     }
 }
+
+export async function FavoritesAction({ request }) {
+    const formData = await request.formData();
+    const { uid } = await auth.currentUser;
+    const name = formData.get('name');
+
+    const response = await removeFavorite(name, uid);
+    return response;
+}
