@@ -16,7 +16,7 @@ const Home = () => {
                         <h3 className={styles.cover__subtitle}>You can learn a lot about your favorite artist by just typing his/her name!</h3>
                     </div>
                     <div className={styles.cover__image}>
-                        <img src='/famouser/img/celebrities.png' alt="famouser cover" height="auto" width="100%" loading='lazy' />
+                        <img src='/famouser/img/mockup.png' alt="famouser cover" height="300px" width="100%" loading='lazy' />
                     </div>
                 </Section.Description>
                 <div className={styles.searchbox}>

@@ -25,14 +25,14 @@ export const DescriptionView = ({
 }) => (
     <section className={styles.detail}>
         <div className={styles.detail__picture} style={{ backgroundImage: `url(${flag})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-            <img src={avatar} width="100%" height="100%" alt={name} loading="lazy" />
+            <img src={avatar} width="100%" height="300px" alt={name} loading="lazy" />
         </div>
         <div className={styles.detail__information}>
             <div className={styles.detail__header}>
                 <h2 className={styles.detail__title}>{name} {!isAlive && '✝️'}</h2>
                 <fetcher.Form method="post">
                     <input name="name" type="hidden" value={name} />
-                    <button className={styles.detail__heart} name="is_favorite" value={isFav} disabled={buttonDisabled}>{isFav ? <HeartIcon /> : <HeartIcon color="white" />}</button>
+                    <button className={styles.detail__heart} name="is_favorite" value={isFav} disabled={buttonDisabled}>{isFav ? <HeartIcon /> : <HeartIcon color="gray" />}</button>
                 </fetcher.Form>
             </div>
             <div className={styles.detail__tags}>
