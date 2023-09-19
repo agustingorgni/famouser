@@ -1,12 +1,22 @@
-import { Form } from 'react-router-dom';
+import { Form, useActionData, useNavigate } from 'react-router-dom';
 
 import styles from './styles.module.scss';
 import { Input } from '../../components/Input';
 import SearchIcon from '../../components/SearchIcon';
 import { ExternalLink } from '../../components/ExternalLink';
 import { Section } from '../../components/Section';
+import { useEffect } from 'react';
 
 const Home = () => {
+    const data = useActionData();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (data && data.status === 'ok') {
+            navigate(data.redirect);
+        }
+    }, [data, navigate]);
+
     return (
         <>
             <Section className={styles.cover}>
@@ -20,13 +30,14 @@ const Home = () => {
                     </div>
                 </Section.Description>
                 <div className={styles.searchbox}>
-                    <Form action='stars' className={styles.searchbox__form}>
-                        <Input name="q" placeholder="e.g. Tom Delonge" type="string" />
+                    <Form method='post' className={styles.searchbox__form}>
+                        <Input name="query" placeholder="e.g. Tom Delonge" type="string" />
                         <button className={styles.searchbox__button} type='submit'>
                             <SearchIcon width={40} height={40} />
                         </button>
                     </Form>
                 </div>
+                {data?.message && <p className={styles.cover__error}>{data.message}</p>}
             </Section>
             <Section className={styles.about}>
                 <Section.Image className={styles.about__image}>

@@ -17,7 +17,8 @@ import {
   LoginAction,
   SignupAction,
   DescriptionAction,
-  FavoritesAction
+  FavoritesAction,
+  HomeAction
 } from './actions';
 import { Description } from './pages/Description';
 import { Home } from './pages/Home';
@@ -31,7 +32,7 @@ import { FamouserProvider } from './providers/FamouserProvider';
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route element={<AppLayout />}>
-    <Route path="/famouser/" element={<Home />} />
+    <Route path="/famouser/" element={<Home />} action={HomeAction} />
     <Route path='/famouser/stars' element={<List />} errorElement={<ErrorPage />} loader={ListLoader} />
     <Route path='/famouser/stars/:name' element={<Description />} errorElement={<ErrorPage />} loader={DescriptionLoader} action={DescriptionAction} />
     <Route path='/famouser/favorites' element={<Favorites />} errorElement={<ErrorPage />} loader={FavoritesLoader} action={FavoritesAction} />

@@ -4,6 +4,23 @@ import { redirect } from 'react-router-dom';
 import { auth } from '../../firebase';
 import { addToFavorites, removeFavorite, storeFavorites } from '../utils/functions/favorites';
 
+export async function HomeAction({ request }) {
+    const formData = await request.formData();
+    const query = formData.get('query');
+
+    if (query.length < 3) {
+        return {
+            status: 'error',
+            message: 'Please, type more than 3 chars :)'
+        }
+    } else {
+        return {
+            status: 'ok',
+            redirect: `/famouser/stars?q=${query}`
+        }
+    }
+}
+
 export async function LoginAction({ request }) {
     const formData = await request.formData();
     const email = formData.get('email');
