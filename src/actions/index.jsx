@@ -31,7 +31,7 @@ export async function LoginAction({ request }) {
         await storeFavorites(user.uid);
         return { response: 'ok', user: user.uid, redirect: '/famouser/' };
     } catch(error) {
-        return { response: 'error', message: error.message };
+        return { response: 'error', message: 'Something went wrong' };
     }
 }
 

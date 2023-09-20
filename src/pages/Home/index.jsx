@@ -6,6 +6,7 @@ import SearchIcon from '../../components/SearchIcon';
 import { ExternalLink } from '../../components/ExternalLink';
 import { Section } from '../../components/Section';
 import { useEffect } from 'react';
+import { getText } from '../../utils/functions/i18n';
 
 const Home = () => {
     const data = useActionData();
@@ -23,7 +24,7 @@ const Home = () => {
                 <Section.Description className={styles.cover__description}>
                     <div className={styles.cover__text}>
                         <h2 className={styles.cover__title}>This is <strong>Famouser</strong></h2>
-                        <h3 className={styles.cover__subtitle}>You can learn a lot about your favorite artist by just typing his/her name!</h3>
+                        <h3 className={styles.cover__subtitle}>{getText('You can learn a lot about your favorite artist by just typing his/her name!')}</h3>
                     </div>
                     <div className={styles.cover__image}>
                         <img src='/famouser/img/mockup.png' alt="famouser cover" height="300px" width="100%" loading='lazy' />
