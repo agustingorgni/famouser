@@ -1,53 +1,81 @@
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-import { redirect } from 'react-router-dom';
 
 import { auth } from '../../firebase';
 import { addToFavorites, removeFavorite, storeFavorites } from '../utils/functions/favorites';
+import { ERROR, OK } from '../utils/enums/statuses';
+import { createSlug } from '../utils/functions/slugs';
+
+/*
+* This code handle the Home Action when a user search for a celebrity
+* @param {Object} request
+* @returns {Object} - Object with status ok or error
+*/
 
 export async function HomeAction({ request }) {
     const formData = await request.formData();
-    const query = formData.get('query');
 
-    if (query.length < 3) {
-        return {
-            status: 'error',
-            message: 'Please, type more than 3 chars :)'
-        }
-    } else {
-        return {
-            status: 'ok',
-            redirect: `/famouser/stars?q=${query}`
-        }
+    const query = formData && typeof formData.get('query') === 'string' ? formData.get('query') : '';
+    const status = query.length < 3 ? ERROR : OK;
+    
+    return {
+        status,
+        ...(status === ERROR && { message: 'Please, type more than 3 characters 😅' }),
+        ...(status === OK && { redirect: `/famouser/stars?q=${query}` }),
     }
 }
 
+/*
+* This code handle the Login Action
+* @param {Object} request
+* @returns {Object} - Object with status, user and optional redirect/messsage
+*/
+
 export async function LoginAction({ request }) {
     const formData = await request.formData();
-    const email = formData.get('email');
-    const password = formData.get('password');
+    const email = formData && typeof formData.get('email') === 'string' ? formData.get('email') : '';
+    const password = formData && typeof formData.get('password') === 'string' ? formData.get('password') : '';
+
+    if (!email || !password) {
+        return { status: ERROR, message: 'Email and password required' };
+    }
 
     try {
         const { user } = await signInWithEmailAndPassword(auth, email, password);
         await storeFavorites(user.uid);
-        return { response: 'ok', user: user.uid, redirect: '/famouser/' };
+        return { status: OK, user: user.uid, redirect: '/famouser/' };
     } catch(error) {
-        return { response: 'error', message: 'Something went wrong' };
+        return { status: ERROR, message: 'Something went wrong' };
     }
 }
+
+/*
+* This code handle the Signup Action
+* @param {Object} request
+* @returns {Object} - Object with status, user and optional redirect/messsage
+*/
 
 export async function SignupAction({ request }) {
     const formData = await request.formData();
     const email = formData.get('email');
     const password = formData.get('password');
 
+    if (!email || !password) {
+        return { status: ERROR, message: 'Email and password required' };
+    }
+
     try {
         await createUserWithEmailAndPassword(auth, email, password);
-        return redirect('/famouser/');
+        return { status: OK, redirect: '/famouser/' };
     } catch(error) {
-        console.log(error);
-        return { error: true, message: 'Something went wrong' };
+        return { status: ERROR, message: 'Something went wrong' };
     }
 }
+
+/*
+* This code handle the Description Action, in which a user can add o delete a favorite
+* @param {Object} request
+* @returns {Object} - Object with status, user and optional redirect/messsage
+*/
 
 export async function DescriptionAction({ request }) {
     const formData = await request.formData();
@@ -56,29 +84,51 @@ export async function DescriptionAction({ request }) {
     const user = await auth.currentUser;
 
     if (!user) {
-        return { error: true, redirect: `/famouser/login?callback=/famouser/stars/${name.replace(' ', '-')}` }
+        return { status: ERROR, redirect: `/famouser/login?callback=/famouser/stars/${createSlug(name)}` }
     }
 
     const { uid } = user;
 
-    if (isFavorite === "false") {
+    if (isFavorite === "false") { 
         const response = await addToFavorites(name, uid);
         return {
-            message: response ? 'added' : 'failed to add'
+            status: OK, message: response ? 'added' : 'failed to add'
         }
     } else {
         const response = await removeFavorite(name, uid);
         return {
-            message: response ? 'deleted' : 'failed to delete'
+            status: OK, message: response ? 'deleted' : 'failed to delete'
         }
     }
 }
 
+/*
+* This code handle the Favorites Action, in which a user can delete a favorite from Favorites view
+* @param {Object} request
+* @returns {Object} - status and data with favorites
+*/
+
 export async function FavoritesAction({ request }) {
     const formData = await request.formData();
+
+    if (!auth || !auth.currentUser) {
+        return { status: ERROR, data: null };
+    }
+
     const { uid } = await auth.currentUser;
+
     const name = formData.get('name');
 
     const response = await removeFavorite(name, uid);
     return response;
+}
+
+/*
+* AppLayout
+*
+*/
+
+export async function AppLayoutAction() {
+    console.log('agu');
+    return true;
 }

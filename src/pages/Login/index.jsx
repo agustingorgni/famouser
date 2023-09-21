@@ -1,36 +1,31 @@
 import { useActionData, useNavigate, useSearchParams } from 'react-router-dom';
+import React from 'react';
 
 import { useFamouserState } from '../../hooks/useFamouserState';
 import { useEffect } from 'react';
-import { HIDE_SNACKBAR, SHOW_SNACKBAR } from '../../utils/enums/actions';
+import { SHOW_SNACKBAR } from '../../utils/enums/actions';
 import { LoginView } from './view';
+import { ERROR, OK } from '../../utils/enums/statuses';
+import { hideSnackbar } from '../../utils/functions/hideSnackbar';
 
-const Login = () => {
+export const Login = () => {
     const data = useActionData();
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
     const { dispatch } = useFamouserState();
 
     useEffect(() => {
-        if (data) {
-            if (data.response !== 'ok') {
-                dispatch({ type: SHOW_SNACKBAR, payload: { type: 'error', message: data.message } });
-                setTimeout(() => {
-                    dispatch({ type: HIDE_SNACKBAR });
-                }, 3000);
-            } else {
-                if (searchParams.get('callback')) {
-                    navigate(searchParams.get('callback'));
-                } else {
-                    navigate(data.redirect);
-                }
-            }
+        if (!data) return;
+
+        const { status, message, redirect } = data;
+        
+        if (status !== OK) {
+            dispatch({ type: SHOW_SNACKBAR, payload: { type: ERROR, message: message } });
+            hideSnackbar(dispatch);
+        } else {
+            navigate(searchParams.get('callback') ? searchParams.get('callback') : redirect); 
         }
     }, [data, dispatch, navigate, searchParams]);
 
     return <LoginView />;
-}
-
-export {
-    Login,
 }

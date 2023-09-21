@@ -2,6 +2,7 @@ import { forwardRef } from "react";
 import { Link, Outlet } from "react-router-dom";
 import classNames from "classnames";
 import PropTypes from 'prop-types';
+import React from 'react';
 
 import styles from './styles.module.scss';
 
@@ -37,7 +38,7 @@ export const AppLayoutView = forwardRef((
         {!isCustomLayout && <section className={styles.footer}>
             <hr className={styles.footer__divider} />
             <span>
-                Famouser was created with 💓by <ExternalLink href="https://github.com/agustingorgni">Agustin Gorgni</ExternalLink>
+                Famouser was created with 💓 by <ExternalLink href="https://github.com/agustingorgni">Agustin Gorgni</ExternalLink>
             </span>
         </section>}
         <Snackbar show={snackbar.show} type={snackbar.type} message={snackbar.message} />

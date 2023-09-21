@@ -1,8 +1,10 @@
 import { useFetcher, useLoaderData, useNavigate } from "react-router-dom"
+import React from 'react';
 
 import { MALE } from "../../utils/enums/gender";
 import { useEffect, useState } from "react";
 import { DescriptionView } from "./view";
+import { ERROR } from "../../utils/enums/statuses";
 
 const Description = () => {
     const {
@@ -24,27 +26,15 @@ const Description = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (fetcher.state === 'loading') {
-            if(fetcher.data) {
-                if (fetcher.data.error) {
-                    navigate(fetcher.data.redirect);
-                } else {
-                    setIsFav(() => {
-                        if (fetcher.data.message === 'added') {
-                            return true
-                        } else {
-                            return false
-                        }
-                    });
-                }
+        if (fetcher.state === 'loading' && fetcher.data) {
+            if (fetcher.data.status === ERROR) {
+                navigate(fetcher.data.redirect);
+            } else {
+                setIsFav(() => fetcher.data.message === 'added');
             }
         } 
         
-        if (fetcher.state === 'submitting') {
-            setButtonDisabled(true);
-        } else {
-            setButtonDisabled(false);
-        }
+        setButtonDisabled(fetcher.state === 'submitting');
     }, [fetcher, navigate]);
 
     const avatar = gender === MALE ? '/famouser/img/male_avatar.png' : '/famouser/img/female_avatar.png';

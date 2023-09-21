@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import React from 'react';
 
 import styles from './styles.module.scss';
 import { Button } from '../../components/Button';
@@ -41,6 +42,14 @@ export const FavoritesView = ({ favorites, fetcher, handleClick }) => {
     );
 };
 
+Results.propTypes = {
+    favorites: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+    fetcher: PropTypes.object.isRequired,
+    handleClick: PropTypes.func.isRequired,
+};
+
 FavoritesView.propTypes = {
-    favorites: PropTypes.arrayOf(PropTypes.string).isRequired,
+    favorites: PropTypes.arrayOf(PropTypes.string),
+    fetcher: PropTypes.object.isRequired,
+    handleClick: PropTypes.func.isRequired,
 };

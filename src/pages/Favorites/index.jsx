@@ -1,6 +1,8 @@
 import { useFetcher, useLoaderData, useNavigate } from 'react-router-dom';
+import React from 'react';
 
 import { FavoritesView } from './view';
+import { createSlug } from '../../utils/functions/slugs';
 
 export const Favorites = () => {
     const data = useLoaderData();
@@ -8,7 +10,7 @@ export const Favorites = () => {
     const navigate = useNavigate();
 
     const handleClick = (name) => {
-        navigate(`/famouser/stars/${name.replace(' ', '-')}`)
+        navigate(`/famouser/stars/${createSlug(name)}`)
     };
 
     const mappedProps = {

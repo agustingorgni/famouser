@@ -1,6 +1,7 @@
 import { arrayUnion, doc, getDoc, setDoc } from "firebase/firestore";
 
 import { db } from "../../../firebase";
+import { ERROR, OK } from "../enums/statuses";
 
 export const storeFavorites = async (user) => {
     let favorites;
@@ -19,9 +20,7 @@ export const storeFavorites = async (user) => {
     });
 };
 
-export const deleteFavorites = () => {
-    localStorage.removeItem('famouser_favorites');
-};
+export const deleteFavorites = () => localStorage.removeItem('famouser_favorites');
 
 export const getFavorites = () => JSON.parse(localStorage.getItem('famouser_favorites'));
 
@@ -52,12 +51,12 @@ export const removeFavorite = async (name, uid) => {
             setDoc(document, { names: filteredArray });
             localStorage.setItem('famouser_favorites', JSON.stringify(filteredArray));
             resolve({
-                status: 'ok',
+                status: OK,
                 data: filteredArray
             });
         } catch (e) {
             reject({
-                status: 'error',
+                status: ERROR,
                 data: favorites
             });
         }
