@@ -4,7 +4,8 @@ import {
   RouterProvider,
   createBrowserRouter,
   createRoutesFromElements
-} from 'react-router-dom'
+} from 'react-router-dom';
+import React from 'react';
 
 import AppLayout from './layouts/AppLayout';
 import List from './pages/List';
@@ -18,7 +19,8 @@ import {
   SignupAction,
   DescriptionAction,
   FavoritesAction,
-  HomeAction
+  HomeAction,
+  AppLayoutAction
 } from './actions';
 import { Description } from './pages/Description';
 import { Home } from './pages/Home';
@@ -31,7 +33,7 @@ import Signup from './pages/Signup';
 import { FamouserProvider } from './providers/FamouserProvider';
 
 const router = createBrowserRouter(createRoutesFromElements(
-  <Route element={<AppLayout />}>
+  <Route element={<AppLayout />} action={AppLayoutAction}>
     <Route path="/famouser/" element={<Home />} action={HomeAction} />
     <Route path='/famouser/stars' element={<List />} errorElement={<ErrorPage />} loader={ListLoader} />
     <Route path='/famouser/stars/:name' element={<Description />} errorElement={<ErrorPage />} loader={DescriptionLoader} action={DescriptionAction} />

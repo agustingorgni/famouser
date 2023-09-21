@@ -1,5 +1,7 @@
+import React from 'react';
 import { createContext, useReducer } from 'react';
 import PropTypes from 'prop-types';
+
 import { HIDE_SNACKBAR, SHOW_SNACKBAR } from '../utils/enums/actions';
 
 export const FamouserContext = createContext();

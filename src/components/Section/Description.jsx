@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import React from 'react';
 
 const Description = ({ className, children, ...props }) => (
     <div className={className} {...props}>

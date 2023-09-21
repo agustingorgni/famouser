@@ -1,20 +1,21 @@
 import { useActionData } from 'react-router-dom';
+import React from 'react';
 
 import { useEffect } from 'react';
 import { useFamouserState } from '../../hooks/useFamouserState';
-import { HIDE_SNACKBAR, SHOW_SNACKBAR } from '../../utils/enums/actions';
+import { SHOW_SNACKBAR } from '../../utils/enums/actions';
 import { SignupView } from './view';
+import { ERROR } from '../../utils/enums/statuses';
+import { hideSnackbar } from '../../utils/functions/hideSnackbar';
 
 const Signup = () => {
     const data = useActionData();
     const { dispatch } = useFamouserState();
 
     useEffect(() => {
-        if (data?.error) {
-            dispatch({ type: SHOW_SNACKBAR, payload: { type: 'error', message: data.message } });
-            setTimeout(() => {
-                dispatch({ type: HIDE_SNACKBAR })
-            }, 3000)
+        if (data?.status === ERROR) {
+            dispatch({ type: SHOW_SNACKBAR, payload: { type: ERROR, message: data.message } });
+            hideSnackbar(dispatch);
         }
     }, [data, dispatch]);
 

@@ -1,4 +1,5 @@
 import { Link, useRouteError } from "react-router-dom";
+import React from 'react';
 
 import styles from './styles.module.scss';
 

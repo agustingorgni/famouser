@@ -1,3 +1,4 @@
+import React from 'react';
 import { useEffect, useRef } from 'react';
 import { useLocation, useNavigate, useNavigation } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
@@ -10,11 +11,15 @@ import { useFamouserState } from '../hooks/useFamouserState';
 import { useAuth } from '../hooks/useAuth';
 import { deleteFavorites } from '../utils/functions/favorites';
 import { AppLayoutView } from './AppLayoutView';
+import { SHOW_SNACKBAR } from '../utils/enums/actions';
+import { ERROR } from '../utils/enums/statuses';
+import { hideSnackbar } from '../utils/functions/hideSnackbar';
 
 export default function AppLayout() {
     const headerRef = useRef(null);
     const navigate = useNavigate();
     const { user } = useAuth();
+    const { dispatch } = useFamouserState();
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
@@ -36,14 +41,16 @@ export default function AppLayout() {
         }
     };
 
-    const handleAuth = () => {
+    const handleAuth = async () => {
         if (user) {
-            signOut(auth).then(() => {
+            try {
+                await signOut(auth);
                 deleteFavorites();
                 navigate('/famouser/');
-            }).catch((error) => {
-                console.log(error.message)
-            });
+            } catch (e) {
+                dispatch({ type: SHOW_SNACKBAR, payload: { type: ERROR, message: 'Error trying to logging out'} });
+                hideSnackbar(dispatch);
+            }
         } else {
             navigate('/famouser/login');
         }
