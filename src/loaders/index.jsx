@@ -1,3 +1,4 @@
+import { NO_DATA_ERROR, NO_QUERY_ERROR } from '../utils/enums/messages';
 import { CELEBRITY_API_URL, COUNTRY_API_URL } from '../utils/enums/urls';
 import { getFavorites } from '../utils/functions/favorites';
 import { fetcher } from '../utils/functions/fetcher';
@@ -14,7 +15,7 @@ export async function ListLoader({ request }) {
     const query = new URL(request.url).searchParams.get('q');
 
     if (!query) {
-        throw new Error('You must provide a name to search');
+        throw new Error(NO_QUERY_ERROR);
     }
 
     const celebrities = await fetcher(`${CELEBRITY_API_URL}?name=${query}`, {
@@ -25,7 +26,7 @@ export async function ListLoader({ request }) {
     });
 
     if (celebrities.length === 0) {
-        throw new Error('No celebrities were found');
+        throw new Error(NO_DATA_ERROR);
     }
 
     return celebrities;
@@ -50,7 +51,7 @@ export async function DescriptionLoader({ params }) {
     });
 
     if (celebrity.length === 0) {
-        throw new Error('Celebrity data fetch error');
+        throw new Error(NO_DATA_ERROR);
     }
 
     const { nationality } = celebrity[0];

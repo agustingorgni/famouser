@@ -5,6 +5,10 @@ import { MALE } from '../../utils/enums/gender';
 import { useEffect, useState } from 'react';
 import { DescriptionView } from './view';
 import { ERROR } from '../../utils/enums/statuses';
+import { useFamouserState } from '../../hooks/useFamouserState';
+import { SHOW_SNACKBAR } from '../../utils/enums/actions';
+import { hideSnackbar } from '../../utils/functions/hideSnackbar';
+import { GENERIC_ERROR } from '../../utils/enums/messages';
 
 const Description = () => {
     const {
@@ -24,16 +28,18 @@ const Description = () => {
     const [buttonDisabled, setButtonDisabled] = useState(false);
     const fetcher = useFetcher();
     const navigate = useNavigate();
+    const { dispatch } = useFamouserState();
 
     useEffect(() => {
         if (fetcher.state === 'loading' && fetcher.data) {
             if (fetcher.data.status === ERROR) {
-                navigate(fetcher.data.redirect);
+                dispatch({ type: SHOW_SNACKBAR, payload: { type: ERROR, message: GENERIC_ERROR } });
+                hideSnackbar(dispatch);
             } else {
-                setIsFav(() => fetcher.data.message === 'added');
+                setIsFav(() => fetcher.data.favorite);
             }
-        } 
-        
+        }
+
         setButtonDisabled(fetcher.state === 'submitting');
     }, [fetcher, navigate]);
 

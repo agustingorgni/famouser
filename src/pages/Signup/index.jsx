@@ -22,4 +22,4 @@ const Signup = () => {
     return <SignupView />;
 }
 
-export default Signup
+export default Signup;

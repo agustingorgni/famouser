@@ -29,5 +29,8 @@ module.exports = {
     ],
     'rules': {
         'quotes': ['error', 'single'],
+        'no-trailing-spaces': 'error',
+        'eol-last': ['error', 'always'],
+        'no-console': 'error',
     }
 }

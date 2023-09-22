@@ -70,4 +70,4 @@ const Home = () => {
 
 export {
     Home,
-}
+};

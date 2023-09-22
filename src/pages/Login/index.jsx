@@ -18,12 +18,12 @@ export const Login = () => {
         if (!data) return;
 
         const { status, message, redirect } = data;
-        
+
         if (status !== OK) {
             dispatch({ type: SHOW_SNACKBAR, payload: { type: ERROR, message: message } });
             hideSnackbar(dispatch);
         } else {
-            navigate(searchParams.get('callback') ? searchParams.get('callback') : redirect); 
+            navigate(searchParams.get('callback') ? searchParams.get('callback') : redirect);
         }
     }, [data, dispatch, navigate, searchParams]);
 

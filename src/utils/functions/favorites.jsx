@@ -34,8 +34,7 @@ export const addToFavorites = (name, uid) => {
             localStorage.setItem('famouser_favorites', JSON.stringify(favorites));
             return true;
         })
-        .catch(e => {
-            console.log('Se ha producido un error', e);
+        .catch(() => {
             return false;
         });
 }

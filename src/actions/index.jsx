@@ -5,6 +5,7 @@ import { addToFavorites, removeFavorite, storeFavorites } from '../utils/functio
 import { ERROR, OK } from '../utils/enums/statuses';
 import { createSlug } from '../utils/functions/slugs';
 import { INDEX, LIST, LOGIN } from '../utils/enums/links';
+import { AUTH_FIELDS_ERROR, EMPTY_SEARCH_ERROR, GENERIC_ERROR } from '../utils/enums/messages';
 
 /*
 * This code handle the Home Action when a user search for a celebrity
@@ -17,10 +18,10 @@ export async function HomeAction({ request }) {
 
     const query = formData && typeof formData.get('query') === 'string' ? formData.get('query') : '';
     const status = query.length < 3 ? ERROR : OK;
-    
+
     return {
         status,
-        ...(status === ERROR && { message: 'Please, type more than 3 characters 😅' }),
+        ...(status === ERROR && { message: EMPTY_SEARCH_ERROR }),
         ...(status === OK && { redirect: `${LIST}?q=${query}` }),
     }
 }
@@ -37,7 +38,7 @@ export async function LoginAction({ request }) {
     const password = formData && typeof formData.get('password') === 'string' ? formData.get('password') : '';
 
     if (!email || !password) {
-        return { status: ERROR, message: 'Email and password required' };
+        return { status: ERROR, message: AUTH_FIELDS_ERROR };
     }
 
     try {
@@ -45,7 +46,7 @@ export async function LoginAction({ request }) {
         await storeFavorites(user.uid);
         return { status: OK, user: user.uid, redirect: INDEX };
     } catch(error) {
-        return { status: ERROR, message: 'Something went wrong' };
+        return { status: ERROR, message: GENERIC_ERROR };
     }
 }
 
@@ -61,21 +62,21 @@ export async function SignupAction({ request }) {
     const password = formData.get('password');
 
     if (!email || !password) {
-        return { status: ERROR, message: 'Email and password required' };
+        return { status: ERROR, message: AUTH_FIELDS_ERROR };
     }
 
     try {
         await createUserWithEmailAndPassword(auth, email, password);
         return { status: OK, redirect: INDEX };
     } catch(error) {
-        return { status: ERROR, message: 'Something went wrong' };
+        return { status: ERROR, message: GENERIC_ERROR };
     }
 }
 
 /*
 * This code handle the Description Action, in which a user can add o delete a favorite
 * @param {Object} request
-* @returns {Object} - Object with status, user and optional redirect/messsage
+* @returns {Object} - Object with status and bool favorite
 */
 
 export async function DescriptionAction({ request }) {
@@ -90,15 +91,17 @@ export async function DescriptionAction({ request }) {
 
     const { uid } = user;
 
-    if (isFavorite === 'false') { 
+    if (isFavorite === 'false') {
         const response = await addToFavorites(name, uid);
         return {
-            status: OK, message: response ? 'added' : 'failed to add'
+            status: response ? OK : ERROR,
+            favorite: true,
         }
     } else {
         const response = await removeFavorite(name, uid);
         return {
-            status: OK, message: response ? 'deleted' : 'failed to delete'
+            status: response ? OK : ERROR,
+            favorite: false,
         }
     }
 }
@@ -122,14 +125,4 @@ export async function FavoritesAction({ request }) {
 
     const response = await removeFavorite(name, uid);
     return response;
-}
-
-/*
-* AppLayout
-*
-*/
-
-export async function AppLayoutAction() {
-    console.log('agu');
-    return true;
 }

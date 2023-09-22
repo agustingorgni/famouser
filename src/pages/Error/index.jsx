@@ -22,4 +22,4 @@ const Error = () => {
 
 export {
     Error,
-}
+};
