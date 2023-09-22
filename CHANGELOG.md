@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.9](https://github.com/mokkapps/changelog-generator-demo/compare/v0.0.8...v0.0.9) (2023-09-22)
+
+
+### Bug Fixes
+
+* **Main:** Unused action deleted ([6c94ff6](https://github.com/mokkapps/changelog-generator-demo/commits/6c94ff634d030a908678937bab3650d49866c67e))
+
 ### [0.0.8](https://github.com/mokkapps/changelog-generator-demo/compare/v0.0.6...v0.0.8) (2023-09-22)
 
 
