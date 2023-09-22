@@ -20,7 +20,6 @@ import {
   DescriptionAction,
   FavoritesAction,
   HomeAction,
-  AppLayoutAction
 } from './actions';
 import { Description } from './pages/Description';
 import { Home } from './pages/Home';
@@ -34,7 +33,7 @@ import { FamouserProvider } from './providers/FamouserProvider';
 import { DESCRIPTION, FAVORITES, INDEX, LIST, LOGIN, SIGNUP } from './utils/enums/links';
 
 const router = createBrowserRouter(createRoutesFromElements(
-  <Route element={<AppLayout />} action={AppLayoutAction}>
+  <Route element={<AppLayout />}>
     <Route path={INDEX} element={<Home />} action={HomeAction} />
     <Route path={LIST} element={<List />} errorElement={<ErrorPage />} loader={ListLoader} />
     <Route path={DESCRIPTION} element={<Description />} errorElement={<ErrorPage />} loader={DescriptionLoader} action={DescriptionAction} />
