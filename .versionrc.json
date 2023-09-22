@@ -2,7 +2,8 @@
     "types": [
         { "type": "feat", "section": "Features" },
         { "type": "fix", "section": "Bug Fixes" },
-        { "type": "docs", "section": "Documentation" }
+        { "type": "docs", "section": "Documentation" },
+        { "type": "styles", "section": "Styles" }
     ],
     "commitUrlFormat": "https://github.com/agustingorgni/famouser/commit/{{hash}}",
     "compareUrlFormat": "https://github.com/agustingorgni/famouser/compare/{{previousTag}}...{{currentTag}}"
