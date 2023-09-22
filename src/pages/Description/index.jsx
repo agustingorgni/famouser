@@ -31,12 +31,20 @@ const Description = () => {
     const { dispatch } = useFamouserState();
 
     useEffect(() => {
-        if (fetcher.state === 'loading' && fetcher.data) {
-            if (fetcher.data.status === ERROR) {
-                dispatch({ type: SHOW_SNACKBAR, payload: { type: ERROR, message: GENERIC_ERROR } });
-                hideSnackbar(dispatch);
+        const { state, data } = fetcher;
+
+        if (state === 'loading' && data) {
+            const { status, redirect, favorite } = data;
+
+            if (status === ERROR) {
+                if (redirect) {
+                    navigate(fetcher.data.redirect);
+                } else {
+                    dispatch({ type: SHOW_SNACKBAR, payload: { type: ERROR, message: GENERIC_ERROR } });
+                    hideSnackbar(dispatch);
+                }
             } else {
-                setIsFav(() => fetcher.data.favorite);
+                setIsFav(() => favorite);
             }
         }
 
