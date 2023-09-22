@@ -1,11 +1,12 @@
-import { Form, NavLink } from "react-router-dom";
+import { Form, NavLink } from 'react-router-dom';
 import React from 'react';
 
 import styles from './styles.module.scss';
 
-import { Input } from "../../components/Input";
-import { Button } from "../../components/Button";
-import { Divider } from "../../components/Divider";
+import { Input } from '../../components/Input';
+import { Button } from '../../components/Button';
+import { Divider } from '../../components/Divider';
+import { SIGNUP } from '../../utils/enums/links';
 
 export const LoginView = () => (
     <section className={styles.login}>
@@ -22,7 +23,7 @@ export const LoginView = () => (
             <Divider className={styles.login__divider} />
             <p>
                 No account yet? {' '}
-                <NavLink to="/famouser/signup">
+                <NavLink to={SIGNUP}>
                     Sign up
                 </NavLink>
             </p>

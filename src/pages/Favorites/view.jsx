@@ -5,9 +5,10 @@ import styles from './styles.module.scss';
 import { Button } from '../../components/Button';
 import { Grid } from '../../components/Grid';
 import { Link } from 'react-router-dom';
+import { INDEX } from '../../utils/enums/links';
 
 const NoResults = () => (
-    <p className={styles['no-results']}>No favorites found. <Link to="/famouser/">Start browsing!</Link></p>
+    <p className={styles['no-results']}>No favorites found. <Link to={INDEX}>Start browsing!</Link></p>
 );
 
 const Results = ({ favorites, fetcher, handleClick }) => (
@@ -43,7 +44,7 @@ export const FavoritesView = ({ favorites, fetcher, handleClick }) => {
 };
 
 Results.propTypes = {
-    favorites: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+    favorites: PropTypes.array.isRequired,
     fetcher: PropTypes.object.isRequired,
     handleClick: PropTypes.func.isRequired,
 };

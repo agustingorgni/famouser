@@ -1,5 +1,5 @@
-import { useContext } from "react";
-import { FamouserContext } from "../providers/FamouserProvider";
+import { useContext } from 'react';
+import { FamouserContext } from '../providers/FamouserProvider';
 
 export const useFamouserState = () => {
     const context = useContext(FamouserContext);

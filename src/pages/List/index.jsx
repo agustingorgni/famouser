@@ -1,10 +1,11 @@
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from 'react-router-dom';
 import React from 'react';
 
 import styles from './styles.module.scss';
 
-import { MALE } from "../../utils/enums/gender";
-import { createSlug } from "../../utils/functions/slugs";
+import { MALE } from '../../utils/enums/gender';
+import { createSlug } from '../../utils/functions/slugs';
+import { LIST } from '../../utils/enums/links';
 
 export default function List() {
     const celebrities = useLoaderData();
@@ -25,7 +26,7 @@ export default function List() {
                                         loading="lazy"
                                     />
                                     <div className={styles.card__cta}>
-                                        <Link to={`/famouser/stars/${createSlug(celebrity.name)}`}>🔎</Link>
+                                        <Link to={`${LIST}/${createSlug(celebrity.name)}`}>🔎</Link>
                                     </div>
                                 </div>
                                 <div

@@ -51,13 +51,13 @@ const Home = () => {
                     <p className={styles.about__p}>This is a very simple project where you can browse for your favorite artist and learn everything about him/her!</p>
                     <p className={styles.about__p}>This project was created using <ExternalLink href='https://firebase.google.com'>Firebase</ExternalLink>, <ExternalLink href='https://vitejs.dev/'>Vite</ExternalLink>, <ExternalLink href='https://react.dev/'>React</ExternalLink>, <ExternalLink href='https://sass-lang.com/'>Sass</ExternalLink> and <ExternalLink href='https://reactrouter.com/en/main'>React Router Dom</ExternalLink>. Its goal is to learn how React Router Dom 6 and Firebase works</p>
                     <p className={styles.about__p}>Also, this app use the service of <ExternalLink href='https://api-ninjas.com/'>API Ninjas</ExternalLink> to fetch all the displayed Data. They have a lot of demo APIs if you want to check them!</p>
-                    <p className={styles.about__p}>Thanks for stoping by and have a good one!</p>
+                    <p className={styles.about__p}>Thanks for stopping by and have a good one!</p>
                 </Section.Description>
             </Section>
             <Section className={styles.contact}>
                 <Section.Description className={styles.contact__description}>
                     <h3 className={styles.contact__title}>About the author</h3>
-                    <p className={styles.contact__p}>My name is Agustin Gorgni, and Im a Software Engineer currently working at Mercado Libre as a frontend developer.</p>
+                    <p className={styles.contact__p}>My name is Agustin Gorgni, and Im a Software Engineer currently working at <ExternalLink href="https://en.wikipedia.org/wiki/Mercado_Libre">MercadoLibre, Inc</ExternalLink> as a frontend developer.</p>
                     <p className={styles.contact__p}>Feel free to contact me on <ExternalLink href="https://www.linkedin.com/in/agustin-gorgni-95607360/">Linkedin</ExternalLink></p>
                 </Section.Description>
                 <Section.Image className={styles.contact__image}>

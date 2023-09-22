@@ -1,14 +1,15 @@
-import classNames from "classnames";
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 import styles from './styles.module.scss';
 
-import { Header } from "./components/Header";
-import { Data } from "./components/Data";
-import { Caption } from "./components/Caption";
-import { Row } from "./components/Row";
-import { Title } from "./components/Title";
+import { Body } from './components/Body';
+import { Header } from './components/Header';
+import { Data } from './components/Data';
+import { Caption } from './components/Caption';
+import { Row } from './components/Row';
+import { Title } from './components/Title';
 
 export const Grid = ({ children, className }) => {
     return (
@@ -20,7 +21,7 @@ export const Grid = ({ children, className }) => {
 
 Grid.Header = Header;
 Grid.Title = Title;
-Grid.Body = Row;
+Grid.Body = Body;
 Grid.Row = Row;
 Grid.Data = Data;
 Grid.Caption = Caption;

@@ -1,10 +1,10 @@
-import { useFetcher, useLoaderData, useNavigate } from "react-router-dom"
+import { useFetcher, useLoaderData, useNavigate } from 'react-router-dom'
 import React from 'react';
 
-import { MALE } from "../../utils/enums/gender";
-import { useEffect, useState } from "react";
-import { DescriptionView } from "./view";
-import { ERROR } from "../../utils/enums/statuses";
+import { MALE } from '../../utils/enums/gender';
+import { useEffect, useState } from 'react';
+import { DescriptionView } from './view';
+import { ERROR } from '../../utils/enums/statuses';
 
 const Description = () => {
     const {

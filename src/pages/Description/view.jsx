@@ -4,8 +4,9 @@ import { Link } from 'react-router-dom';
 
 import styles from './styles.module.scss';
 
-import { Tag } from "../../components/Tag";
+import { Tag } from '../../components/Tag';
 import HeartIcon from '../../components/HeartIcon';
+import { INDEX } from '../../utils/enums/links';
 
 const tagFormatter = (item) => String(item).replace(/_/g, ' ');
 
@@ -33,7 +34,14 @@ export const DescriptionView = ({
                 <h2 className={styles.detail__title}>{name} {!isAlive && '✝️'}</h2>
                 <fetcher.Form method="post">
                     <input name="name" type="hidden" value={name} />
-                    <button className={styles.detail__heart} name="is_favorite" value={isFav} disabled={buttonDisabled}>{isFav ? <HeartIcon /> : <HeartIcon color="gray" />}</button>
+                    <button
+                        className={styles.detail__heart}
+                        name="is_favorite"
+                        value={isFav}
+                        disabled={buttonDisabled}
+                    >
+                        {isFav ? <HeartIcon /> : <HeartIcon color="gray" />}
+                    </button>
                 </fetcher.Form>
             </div>
             <div className={styles.detail__tags}>
@@ -60,7 +68,7 @@ export const DescriptionView = ({
                 <span>$ {Number(netWorth).toLocaleString() ?? '-'}</span>
             </p>
             <p className={styles.detail__back}>
-                <Link to="/famouser/">Back home</Link>
+                <Link to={INDEX}>Back home</Link>
             </p>
         </div>
     </section>
@@ -73,11 +81,19 @@ DescriptionView.propTypes = {
     isFav: PropTypes.bool.isRequired,
     buttonDisabled: PropTypes.bool.isRequired,
     occupation: PropTypes.array.isRequired,
-    flag: PropTypes.string.isRequired,
-    country: PropTypes.string.isRequired,
-    gender: PropTypes.string.isRequired,
+    flag: PropTypes.string,
+    country: PropTypes.string,
+    gender: PropTypes.string,
     birthday: PropTypes.string.isRequired,
-    height: PropTypes.number.isRequired,
-    netWorth: PropTypes.number.isRequired,
+    height: PropTypes.number,
+    netWorth: PropTypes.number,
     fetcher: PropTypes.shape({}).isRequired,
+};
+
+DescriptionView.defaultProps = {
+    flag: '',
+    country: '',
+    height: null,
+    netWorth: null,
+    gender: '',
 };
