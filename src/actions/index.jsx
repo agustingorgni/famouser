@@ -4,6 +4,7 @@ import { auth } from '../../firebase';
 import { addToFavorites, removeFavorite, storeFavorites } from '../utils/functions/favorites';
 import { ERROR, OK } from '../utils/enums/statuses';
 import { createSlug } from '../utils/functions/slugs';
+import { INDEX, LIST, LOGIN } from '../utils/enums/links';
 
 /*
 * This code handle the Home Action when a user search for a celebrity
@@ -20,7 +21,7 @@ export async function HomeAction({ request }) {
     return {
         status,
         ...(status === ERROR && { message: 'Please, type more than 3 characters 😅' }),
-        ...(status === OK && { redirect: `/famouser/stars?q=${query}` }),
+        ...(status === OK && { redirect: `${LIST}?q=${query}` }),
     }
 }
 
@@ -42,7 +43,7 @@ export async function LoginAction({ request }) {
     try {
         const { user } = await signInWithEmailAndPassword(auth, email, password);
         await storeFavorites(user.uid);
-        return { status: OK, user: user.uid, redirect: '/famouser/' };
+        return { status: OK, user: user.uid, redirect: INDEX };
     } catch(error) {
         return { status: ERROR, message: 'Something went wrong' };
     }
@@ -65,7 +66,7 @@ export async function SignupAction({ request }) {
 
     try {
         await createUserWithEmailAndPassword(auth, email, password);
-        return { status: OK, redirect: '/famouser/' };
+        return { status: OK, redirect: INDEX };
     } catch(error) {
         return { status: ERROR, message: 'Something went wrong' };
     }
@@ -84,7 +85,7 @@ export async function DescriptionAction({ request }) {
     const user = await auth.currentUser;
 
     if (!user) {
-        return { status: ERROR, redirect: `/famouser/login?callback=/famouser/stars/${createSlug(name)}` }
+        return { status: ERROR, redirect: `${LOGIN}?callback=${LIST}/${createSlug(name)}` }
     }
 
     const { uid } = user;

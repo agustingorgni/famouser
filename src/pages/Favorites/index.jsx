@@ -3,6 +3,7 @@ import React from 'react';
 
 import { FavoritesView } from './view';
 import { createSlug } from '../../utils/functions/slugs';
+import { LIST } from '../../utils/enums/links';
 
 export const Favorites = () => {
     const data = useLoaderData();
@@ -10,7 +11,7 @@ export const Favorites = () => {
     const navigate = useNavigate();
 
     const handleClick = (name) => {
-        navigate(`/famouser/stars/${createSlug(name)}`)
+        navigate(`${LIST}/${createSlug(name)}`)
     };
 
     const mappedProps = {

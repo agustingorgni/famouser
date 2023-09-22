@@ -14,6 +14,7 @@ import { AppLayoutView } from './AppLayoutView';
 import { SHOW_SNACKBAR } from '../utils/enums/actions';
 import { ERROR } from '../utils/enums/statuses';
 import { hideSnackbar } from '../utils/functions/hideSnackbar';
+import { FAVORITES, INDEX, LOGIN } from '../utils/enums/links';
 
 export default function AppLayout() {
     const headerRef = useRef(null);
@@ -46,18 +47,18 @@ export default function AppLayout() {
             try {
                 await signOut(auth);
                 deleteFavorites();
-                navigate('/famouser/');
+                navigate(INDEX);
             } catch (e) {
                 dispatch({ type: SHOW_SNACKBAR, payload: { type: ERROR, message: 'Error trying to logging out'} });
                 hideSnackbar(dispatch);
             }
         } else {
-            navigate('/famouser/login');
+            navigate(LOGIN);
         }
     };
 
     const handleFavorites = () => {
-        navigate('/famouser/favorites');
+        navigate(FAVORITES);
     };
 
     const navigation = useNavigation();

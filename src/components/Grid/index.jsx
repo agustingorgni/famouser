@@ -4,6 +4,7 @@ import React from 'react';
 
 import styles from './styles.module.scss';
 
+import { Body } from "./components/Body";
 import { Header } from "./components/Header";
 import { Data } from "./components/Data";
 import { Caption } from "./components/Caption";
@@ -20,7 +21,7 @@ export const Grid = ({ children, className }) => {
 
 Grid.Header = Header;
 Grid.Title = Title;
-Grid.Body = Row;
+Grid.Body = Body;
 Grid.Row = Row;
 Grid.Data = Data;
 Grid.Caption = Caption;
