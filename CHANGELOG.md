@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.8](https://github.com/mokkapps/changelog-generator-demo/compare/v0.0.6...v0.0.8) (2023-09-22)
+
+
+### Features
+
+* callback added in action to add favorite ([3cb2e1c](https://github.com/mokkapps/changelog-generator-demo/commits/3cb2e1cf6bffc896d16a7bf5e7e9a68ffe75bf0b))
+* **eslint and husky:** eslint and husky added ([e0b9f72](https://github.com/mokkapps/changelog-generator-demo/commits/e0b9f7226044e6a36b52dcc4631865aac386516f))
+* new favorites view, grid component added ([8f8a87b](https://github.com/mokkapps/changelog-generator-demo/commits/8f8a87bba144998bff678176d25fb87d0f50b8c1))
+* **Providers:** famouser provider added ([01956da](https://github.com/mokkapps/changelog-generator-demo/commits/01956da539ff1a7b752961ec7216c533e35ef8f3))
+* **Snackbar:** snackbar added and reducer actions modified ([af536fe](https://github.com/mokkapps/changelog-generator-demo/commits/af536fe581a200f9cdfe9774acc923b10537688f))
+
+
+### Documentation
+
+* **README:** updated ([b117124](https://github.com/mokkapps/changelog-generator-demo/commits/b117124d4090851e3d7f82982b144ff3e9eaa434))
+* **standard version:** new type added ([6a03599](https://github.com/mokkapps/changelog-generator-demo/commits/6a035995d0971c94cb9f4eb897e746eaca055d3c))
+
 ### [0.0.7](https://github.com/mokkapps/changelog-generator-demo/compare/v0.0.6...v0.0.7) (2023-09-09)
 
 
