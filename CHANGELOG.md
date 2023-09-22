@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.10](https://github.com/mokkapps/changelog-generator-demo/compare/v0.0.9...v0.0.10) (2023-09-22)
+
+
+### Bug Fixes
+
+* **Description:** redirect when error ([c4bcd07](https://github.com/mokkapps/changelog-generator-demo/commits/c4bcd07cf4c987d8445cfb1575eaa1fbd874b9d4))
+
 ### [0.0.9](https://github.com/mokkapps/changelog-generator-demo/compare/v0.0.8...v0.0.9) (2023-09-22)
 
 
