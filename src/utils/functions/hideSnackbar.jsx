@@ -1,4 +1,4 @@
-import { HIDE_SNACKBAR } from "../enums/actions";
+import { HIDE_SNACKBAR } from '../enums/actions';
 
 export const hideSnackbar = (dispatch, delay = 3000) => (
     setTimeout(() => {

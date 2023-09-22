@@ -1,12 +1,12 @@
-import { Form, NavLink } from "react-router-dom";
+import { Form, NavLink } from 'react-router-dom';
 import React from 'react';
 
 import styles from './styles.module.scss';
 
-import { Input } from "../../components/Input";
-import { Button } from "../../components/Button";
-import { Divider } from "../../components/Divider";
-import { SIGNUP } from "../../utils/enums/links";
+import { Input } from '../../components/Input';
+import { Button } from '../../components/Button';
+import { Divider } from '../../components/Divider';
+import { SIGNUP } from '../../utils/enums/links';
 
 export const LoginView = () => (
     <section className={styles.login}>

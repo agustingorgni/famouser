@@ -1,8 +1,8 @@
-import { Link, useRouteError } from "react-router-dom";
+import { Link, useRouteError } from 'react-router-dom';
 import React from 'react';
 
 import styles from './styles.module.scss';
-import { INDEX } from "../../utils/enums/links";
+import { INDEX } from '../../utils/enums/links';
 
 const Error = () => {
     const error = useRouteError();

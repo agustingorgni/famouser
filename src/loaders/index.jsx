@@ -1,7 +1,7 @@
-import { CELEBRITY_API_URL, COUNTRY_API_URL } from "../utils/enums/urls";
-import { getFavorites } from "../utils/functions/favorites";
-import { fetcher } from "../utils/functions/fetcher";
-import { deleteSlug } from "../utils/functions/slugs";
+import { CELEBRITY_API_URL, COUNTRY_API_URL } from '../utils/enums/urls';
+import { getFavorites } from '../utils/functions/favorites';
+import { fetcher } from '../utils/functions/fetcher';
+import { deleteSlug } from '../utils/functions/slugs';
 
 /*
 * List Loader

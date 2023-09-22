@@ -1,11 +1,11 @@
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from 'react-router-dom';
 import React from 'react';
 
 import styles from './styles.module.scss';
 
-import { MALE } from "../../utils/enums/gender";
-import { createSlug } from "../../utils/functions/slugs";
-import { LIST } from "../../utils/enums/links";
+import { MALE } from '../../utils/enums/gender';
+import { createSlug } from '../../utils/functions/slugs';
+import { LIST } from '../../utils/enums/links';
 
 export default function List() {
     const celebrities = useLoaderData();

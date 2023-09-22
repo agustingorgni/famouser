@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import styles from './styles.module.scss';
 
-import { Tag } from "../../components/Tag";
+import { Tag } from '../../components/Tag';
 import HeartIcon from '../../components/HeartIcon';
 import { INDEX } from '../../utils/enums/links';
 

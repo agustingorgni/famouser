@@ -90,7 +90,7 @@ export async function DescriptionAction({ request }) {
 
     const { uid } = user;
 
-    if (isFavorite === "false") { 
+    if (isFavorite === 'false') { 
         const response = await addToFavorites(name, uid);
         return {
             status: OK, message: response ? 'added' : 'failed to add'

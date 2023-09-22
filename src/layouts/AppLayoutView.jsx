@@ -1,14 +1,14 @@
-import { forwardRef } from "react";
-import { Link, Outlet } from "react-router-dom";
-import classNames from "classnames";
+import { forwardRef } from 'react';
+import { Link, Outlet } from 'react-router-dom';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 import styles from './styles.module.scss';
 
-import { Button } from "../components/Button";
-import { Snackbar } from "../components/Snackbar";
-import { ExternalLink } from "../components/ExternalLink";
+import { Button } from '../components/Button';
+import { Snackbar } from '../components/Snackbar';
+import { ExternalLink } from '../components/ExternalLink';
 
 export const AppLayoutView = forwardRef((
     {
