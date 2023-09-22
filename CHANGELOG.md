@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.12](https://github.com/agustingorgni/famouser/compare/v0.0.11...v0.0.12) (2023-09-22)
+
+
+### Styles
+
+* **List:** background added on Card ([48336f4](https://github.com/agustingorgni/famouser/commit/48336f4ecb4313459bd7a17649d5b3c05d9aee13))
+
 ### [0.0.11](https://github.com/agustingorgni/famouser/compare/v0.0.10...v0.0.11) (2023-09-22)
 
 
