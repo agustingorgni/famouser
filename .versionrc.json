@@ -4,6 +4,6 @@
         { "type": "fix", "section": "Bug Fixes" },
         { "type": "docs", "section": "Documentation" }
     ],
-    "commitUrlFormat": "https://github.com/mokkapps/changelog-generator-demo/commits/{{hash}}",
-    "compareUrlFormat": "https://github.com/mokkapps/changelog-generator-demo/compare/{{previousTag}}...{{currentTag}}"
+    "commitUrlFormat": "https://github.com/agustingorgni/famouser/commit/{{hash}}",
+    "compareUrlFormat": "https://github.com/agustingorgni/famouser/compare/{{previousTag}}...{{currentTag}}"
 }
