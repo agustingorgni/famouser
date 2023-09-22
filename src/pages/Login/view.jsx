@@ -7,6 +7,7 @@ import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
 import { Divider } from '../../components/Divider';
 import { SIGNUP } from '../../utils/enums/links';
+import { GmailIcon } from '../../components/GmailIcon';
 
 export const LoginView = () => (
     <section className={styles.login}>
@@ -21,6 +22,9 @@ export const LoginView = () => (
                 <Button style='danger' className={styles.login__button} type='submit'>Login</Button>
             </Form>
             <Divider className={styles.login__divider} />
+            <Form method='post'>
+                <Button style="unestiled" name="external" value="gmail" type='submit'><GmailIcon /></Button>
+            </Form>
             <p>
                 No account yet? {' '}
                 <NavLink to={SIGNUP}>

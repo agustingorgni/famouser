@@ -1,6 +1,6 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 
-import { auth } from '../../firebase';
+import { auth, googleProvider } from '../../firebase';
 import { addToFavorites, removeFavorite, storeFavorites } from '../utils/functions/favorites';
 import { ERROR, OK } from '../utils/enums/statuses';
 import { createSlug } from '../utils/functions/slugs';
@@ -34,15 +34,16 @@ export async function HomeAction({ request }) {
 
 export async function LoginAction({ request }) {
     const formData = await request.formData();
-    const email = formData && typeof formData.get('email') === 'string' ? formData.get('email') : '';
-    const password = formData && typeof formData.get('password') === 'string' ? formData.get('password') : '';
+    const email = formData && typeof formData.get('email') === 'string' ? formData.get('email') : null;
+    const password = formData && typeof formData.get('password') === 'string' ? formData.get('password') : null;
+    const external = formData && typeof formData.get('external') === 'string' ? formData.get('external') : null;
 
-    if (!email || !password) {
+    if (!external && (!email || !password)) {
         return { status: ERROR, message: AUTH_FIELDS_ERROR };
     }
 
     try {
-        const { user } = await signInWithEmailAndPassword(auth, email, password);
+        const { user } = external ? await signInWithPopup(auth, googleProvider) : await signInWithEmailAndPassword(auth, email, password);
         await storeFavorites(user.uid);
         return { status: OK, user: user.uid, redirect: INDEX };
     } catch(error) {

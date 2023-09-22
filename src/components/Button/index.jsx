@@ -7,7 +7,7 @@ import styles from './styles.module.scss';
 export const Button = ({ children, className, style, size, onClick, ...rest }) => (
     <button
         {...rest}
-        className={classNames(styles.button, styles[`button--${style}`], styles[`button--${size}`], className)}
+        className={classNames(styles.button, styles[`button--${size}`], styles[`button--${style}`], className)}
         onClick={onClick}
     >
         {children}
@@ -17,7 +17,7 @@ export const Button = ({ children, className, style, size, onClick, ...rest }) =
 Button.propTypes = {
     children: PropTypes.node.isRequired,
     className: PropTypes.string,
-    style: PropTypes.oneOf(['info', 'success', 'danger']),
+    style: PropTypes.oneOf(['info', 'success', 'danger', 'unestiled']),
     size: PropTypes.oneOf(['s', 'm', 'l', 'xl']),
     onClick: PropTypes.func,
 };
