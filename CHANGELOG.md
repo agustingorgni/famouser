@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.11](https://github.com/agustingorgni/famouser/compare/v0.0.10...v0.0.11) (2023-09-22)
+
+
+### Documentation
+
+* **Standard Version:** URL format modified ([e610275](https://github.com/agustingorgni/famouser/commit/e6102758d8287f47cb79ba8d370b7c14519b0d45))
+
 ### [0.0.10](https://github.com/mokkapps/changelog-generator-demo/compare/v0.0.9...v0.0.10) (2023-09-22)
 
 
