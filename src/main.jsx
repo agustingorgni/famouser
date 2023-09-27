@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom';
 import React from 'react';
 
-import AppLayout from './layouts/AppLayout';
+import { AppLayout } from './layouts';
 import List from './pages/List';
 import {
   DescriptionLoader,
@@ -28,7 +28,7 @@ import './styles/index.scss';
 import { Error as ErrorPage } from './pages/Error';
 import { Favorites } from './pages/Favorites';
 import { Login } from './pages/Login';
-import Signup from './pages/Signup';
+import { Signup } from './pages/Signup';
 import { FamouserProvider } from './providers/FamouserProvider';
 import { DESCRIPTION, FAVORITES, INDEX, LIST, LOGIN, SIGNUP } from './utils/enums/links';
 

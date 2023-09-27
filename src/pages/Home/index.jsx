@@ -1,6 +1,5 @@
-import { Form, useActionData, useNavigate } from 'react-router-dom';
+import { Form } from 'react-router-dom';
 import React from 'react';
-import { useEffect } from 'react';
 
 import styles from './styles.module.scss';
 
@@ -8,17 +7,10 @@ import { Input } from '../../components/Input';
 import SearchIcon from '../../components/SearchIcon';
 import { ExternalLink } from '../../components/ExternalLink';
 import { Section } from '../../components/Section';
-import { OK } from '../../utils/enums/statuses';
+import { useHome } from './useHome';
 
 const Home = () => {
-    const data = useActionData();
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        if (data && data.status === OK) {
-            navigate(data.redirect);
-        }
-    }, [data, navigate]);
+    const { data } = useHome();
 
     return (
         <>

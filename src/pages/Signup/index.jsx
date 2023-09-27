@@ -1,25 +1,37 @@
-import { useActionData } from 'react-router-dom';
+import { Form, NavLink } from 'react-router-dom';
 import React from 'react';
 
-import { useEffect } from 'react';
-import { useFamouserState } from '../../hooks/useFamouserState';
-import { SHOW_SNACKBAR } from '../../utils/enums/actions';
-import { SignupView } from './view';
-import { ERROR } from '../../utils/enums/statuses';
-import { hideSnackbar } from '../../utils/functions/hideSnackbar';
+import styles from './styles.module.scss';
 
-const Signup = () => {
-    const data = useActionData();
-    const { dispatch } = useFamouserState();
+import { Input } from '../../components/Input';
+import { Button } from '../../components/Button';
+import { Divider } from '../../components/Divider';
+import { LOGIN } from '../../utils/enums/links';
+import { useSignup } from './useSignup';
 
-    useEffect(() => {
-        if (data?.status === ERROR) {
-            dispatch({ type: SHOW_SNACKBAR, payload: { type: ERROR, message: data.message } });
-            hideSnackbar(dispatch);
-        }
-    }, [data, dispatch]);
+export const Signup = () => {
+    useSignup();
 
-    return <SignupView />;
-}
-
-export default Signup;
+    return (
+        <section className={styles.signup}>
+            <div className={styles.signup__image}>
+                <img src='/famouser/img/login.jpg' alt="signup cover" height="100%" width="100%" loading='lazy' />
+            </div>
+            <div className={styles.signup__content}>
+                <h2 className={styles.signup__title}>Join us!</h2>
+                <Form className={styles.form} method='post'>
+                    <Input style='outline' className={styles.signup__input} placeholder='Your e-mail' name='email' type='text' />
+                    <Input style='outline' className={styles.signup__input} placeholder='Your password' name='password' type='password' />
+                    <Button style='danger' className={styles.signup__button} type='submit'>Sign up</Button>
+                </Form>
+                <Divider className={styles.signup__divider} />
+                <p>
+                    Already have an account? {' '}
+                    <NavLink to={LOGIN}>
+                        Login
+                    </NavLink>
+                </p>
+            </div>
+        </section>
+    );
+};

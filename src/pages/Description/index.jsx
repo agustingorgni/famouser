@@ -1,77 +1,79 @@
-import { useFetcher, useLoaderData, useNavigate } from 'react-router-dom'
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-import { MALE } from '../../utils/enums/gender';
-import { useEffect, useState } from 'react';
-import { DescriptionView } from './view';
-import { ERROR } from '../../utils/enums/statuses';
-import { useFamouserState } from '../../hooks/useFamouserState';
-import { SHOW_SNACKBAR } from '../../utils/enums/actions';
-import { hideSnackbar } from '../../utils/functions/hideSnackbar';
-import { GENERIC_ERROR } from '../../utils/enums/messages';
+import styles from './styles.module.scss';
 
-const Description = () => {
+import { Tag } from '../../components/Tag';
+import HeartIcon from '../../components/HeartIcon';
+import { INDEX } from '../../utils/enums/links';
+import { useDescription } from './useDescription';
+
+const tagFormatter = (item) => String(item).replace(/_/g, ' ');
+
+export const Description = () => {
     const {
-        name,
-        gender,
-        occupation,
-        country,
         flag,
-        birthday,
-        height,
-        is_alive: isAlive,
-        net_worth: netWorth,
-        isFavorite,
-    } = useLoaderData();
-
-    const [isFav, setIsFav] = useState(isFavorite);
-    const [buttonDisabled, setButtonDisabled] = useState(false);
-    const fetcher = useFetcher();
-    const navigate = useNavigate();
-    const { dispatch } = useFamouserState();
-
-    useEffect(() => {
-        const { state, data } = fetcher;
-
-        if (state === 'loading' && data) {
-            const { status, redirect, favorite } = data;
-
-            if (status === ERROR) {
-                if (redirect) {
-                    navigate(fetcher.data.redirect);
-                } else {
-                    dispatch({ type: SHOW_SNACKBAR, payload: { type: ERROR, message: GENERIC_ERROR } });
-                    hideSnackbar(dispatch);
-                }
-            } else {
-                setIsFav(() => favorite);
-            }
-        }
-
-        setButtonDisabled(fetcher.state === 'submitting');
-    }, [fetcher, navigate]);
-
-    const avatar = gender === MALE ? '/famouser/img/male_avatar.png' : '/famouser/img/female_avatar.png';
-
-    const mappedProps = {
         avatar,
-        name,
         isAlive,
+        fetcher,
         isFav,
         buttonDisabled,
         occupation,
-        flag,
         country,
         gender,
         birthday,
         height,
         netWorth,
-        fetcher,
-    };
+        name,
+    } = useDescription();
 
-    return <DescriptionView {...mappedProps} />
+    return (
+        <section className={styles.detail}>
+            <div className={styles.detail__picture} style={{ backgroundImage: `url(${flag})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+                <img src={avatar} width="100%" height="300px" alt={name} loading="lazy" />
+            </div>
+            <div className={styles.detail__information}>
+                <div className={styles.detail__header}>
+                    <h2 className={styles.detail__title}>{name} {!isAlive && '✝️'}</h2>
+                    <fetcher.Form method="post">
+                        <input name="name" type="hidden" value={name} />
+                        <button
+                            className={styles.detail__heart}
+                            name="is_favorite"
+                            value={isFav}
+                            disabled={buttonDisabled}
+                        >
+                            {isFav ? <HeartIcon /> : <HeartIcon color="gray" />}
+                        </button>
+                    </fetcher.Form>
+                </div>
+                <div className={styles.detail__tags}>
+                    {occupation && occupation.map((item, i) => <Tag key={i}>{tagFormatter(item)}</Tag>)}
+                </div>
+                <p>
+                    <strong>Home country:</strong>
+                    <span>{country ?? '-'}</span>
+                </p>
+                <p>
+                    <strong>Gender:</strong>
+                    <span>{gender ?? '-'}</span>
+                </p>
+                <p>
+                    <strong>Birthday:</strong>
+                    <span>{birthday ?? '-'}</span>
+                </p>
+                <p>
+                    <strong>Height:</strong>
+                    <span>{height ?? '-'}</span>
+                </p>
+                <p>
+                    <strong>Net worth:</strong>
+                    <span>$ {Number(netWorth).toLocaleString() ?? '-'}</span>
+                </p>
+                <p className={styles.detail__back}>
+                    <Link to={INDEX}>Back home</Link>
+                </p>
+            </div>
+        </section>
+    );
 };
-
-export {
-    Description,
-}

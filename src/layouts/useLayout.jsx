@@ -1,4 +1,3 @@
-import React from 'react';
 import { useEffect, useRef } from 'react';
 import { useLocation, useNavigate, useNavigation } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
@@ -10,13 +9,12 @@ import { IS_CUSTOM_LAYOUT } from '../utils/enums/layouts';
 import { useFamouserState } from '../hooks/useFamouserState';
 import { useAuth } from '../hooks/useAuth';
 import { deleteFavorites } from '../utils/functions/favorites';
-import { AppLayoutView } from './AppLayoutView';
 import { SHOW_SNACKBAR } from '../utils/enums/actions';
 import { ERROR } from '../utils/enums/statuses';
 import { hideSnackbar } from '../utils/functions/hideSnackbar';
 import { FAVORITES, INDEX, LOGIN } from '../utils/enums/links';
 
-export default function AppLayout() {
+export const useLayout = () => {
     const headerRef = useRef(null);
     const navigate = useNavigate();
     const { user } = useAuth();
@@ -49,7 +47,7 @@ export default function AppLayout() {
                 deleteFavorites();
                 navigate(INDEX);
             } catch (e) {
-                dispatch({ type: SHOW_SNACKBAR, payload: { type: ERROR, message: 'Error trying to logging out'} });
+                dispatch({ type: SHOW_SNACKBAR, payload: { type: ERROR, message: 'Error trying to logging out' } });
                 hideSnackbar(dispatch);
             }
         } else {
@@ -70,17 +68,16 @@ export default function AppLayout() {
     const headerColor = IS_CUSTOM_LAYOUT[pathname] ? 'white' : 'lightblue';
     const isCustomLayout = IS_CUSTOM_LAYOUT[pathname];
 
-    const mappedProps = {
+    return {
         searching,
         headerColor,
         isCustomLayout,
         user,
         snackbar,
+        headerRef,
         methods: {
             handleFavorites,
             handleAuth,
         },
     };
-
-    return <AppLayoutView ref={headerRef} {...mappedProps} />;
-}
+};
