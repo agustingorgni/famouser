@@ -66,18 +66,24 @@
     }
 
     &__recover-form {
-        transition: transform 0.5s ease-in-out;
+        transition: transform 0.5s ease-in-out, opacity 1s ease-in-out;
         display: flex;
         flex-flow: column nowrap;
+        overflow: hidden;
+        position: absolute;
+        bottom: 0;
+        width: -webkit-fill-available;
 
         &--hidden {
             transform: translateY(0);
-            display: none;
+            height: 0;
+            opacity: 0;
         }
 
         &--visible {
             transform: translateY(-40vh);
-            display: block;
+            height: auto;
+            opacity: 1;
         }
     }
 }
