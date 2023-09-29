@@ -72,14 +72,12 @@
 
         &--hidden {
             transform: translateY(0);
-            opacity: 0;
-            height: 0;
+            display: none;
         }
 
         &--visible {
-            transform: translateY(-30vh);
-            opacity: 1;
-            height: auto;
+            transform: translateY(-40vh);
+            display: block;
         }
     }
 }
