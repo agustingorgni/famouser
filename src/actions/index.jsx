@@ -1,4 +1,4 @@
-import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 
 import { auth, googleProvider, githubProvider } from '../../firebase';
 import { addToFavorites, removeFavorite, storeFavorites } from '../utils/functions/favorites';
@@ -49,9 +49,14 @@ export async function LoginAction({ request }) {
     };
 
     try {
-        const { user } = external ? await signInWithPopup(auth, PROVIDER[external]) : await signInWithEmailAndPassword(auth, email, password);
-        await storeFavorites(user.uid);
-        return { status: OK, user: user.uid, redirect: INDEX };
+        if (external === 'recover') {
+            await sendPasswordResetEmail(auth, email);
+            return { status: OK, message: 'Email sent' };
+        } else {
+            const { user } = external ? await signInWithPopup(auth, PROVIDER[external]) : await signInWithEmailAndPassword(auth, email, password);
+            await storeFavorites(user.uid);
+            return { status: OK, user: user.uid, redirect: INDEX };
+        }
     } catch(error) {
         const message = firebaseErrorExtractor(error) || GENERIC_ERROR
         return { status: ERROR, message };
