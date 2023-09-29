@@ -1,11 +1,12 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 
-import { auth, googleProvider } from '../../firebase';
+import { auth, googleProvider, githubProvider } from '../../firebase';
 import { addToFavorites, removeFavorite, storeFavorites } from '../utils/functions/favorites';
 import { ERROR, OK } from '../utils/enums/statuses';
 import { createSlug } from '../utils/functions/slugs';
 import { INDEX, LIST, LOGIN } from '../utils/enums/links';
 import { AUTH_FIELDS_ERROR, EMPTY_SEARCH_ERROR, GENERIC_ERROR } from '../utils/enums/messages';
+import { firebaseErrorExtractor } from '../utils/functions/firebaseErrorExtractor';
 
 /*
 * This code handle the Home Action when a user search for a celebrity
@@ -42,35 +43,18 @@ export async function LoginAction({ request }) {
         return { status: ERROR, message: AUTH_FIELDS_ERROR };
     }
 
+    const PROVIDER = {
+        ['gmail']: googleProvider,
+        ['github']: githubProvider,
+    };
+
     try {
-        const { user } = external ? await signInWithPopup(auth, googleProvider) : await signInWithEmailAndPassword(auth, email, password);
+        const { user } = external ? await signInWithPopup(auth, PROVIDER[external]) : await signInWithEmailAndPassword(auth, email, password);
         await storeFavorites(user.uid);
         return { status: OK, user: user.uid, redirect: INDEX };
     } catch(error) {
-        return { status: ERROR, message: GENERIC_ERROR };
-    }
-}
-
-/*
-* This code handle the Signup Action
-* @param {Object} request
-* @returns {Object} - Object with status, user and optional redirect/messsage
-*/
-
-export async function SignupAction({ request }) {
-    const formData = await request.formData();
-    const email = formData.get('email');
-    const password = formData.get('password');
-
-    if (!email || !password) {
-        return { status: ERROR, message: AUTH_FIELDS_ERROR };
-    }
-
-    try {
-        await createUserWithEmailAndPassword(auth, email, password);
-        return { status: OK, redirect: INDEX };
-    } catch(error) {
-        return { status: ERROR, message: GENERIC_ERROR };
+        const message = firebaseErrorExtractor(error) || GENERIC_ERROR
+        return { status: ERROR, message };
     }
 }
 

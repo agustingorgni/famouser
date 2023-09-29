@@ -16,7 +16,6 @@ import {
 } from './loaders';
 import {
   LoginAction,
-  SignupAction,
   DescriptionAction,
   FavoritesAction,
   HomeAction,
@@ -28,9 +27,8 @@ import './styles/index.scss';
 import { Error as ErrorPage } from './pages/Error';
 import { Favorites } from './pages/Favorites';
 import { Login } from './pages/Login';
-import { Signup } from './pages/Signup';
 import { FamouserProvider } from './providers/FamouserProvider';
-import { DESCRIPTION, FAVORITES, INDEX, LIST, LOGIN, SIGNUP } from './utils/enums/links';
+import { DESCRIPTION, FAVORITES, INDEX, LIST, LOGIN } from './utils/enums/links';
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route element={<AppLayout />}>
@@ -39,7 +37,6 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path={DESCRIPTION} element={<Description />} errorElement={<ErrorPage />} loader={DescriptionLoader} action={DescriptionAction} />
     <Route path={FAVORITES} element={<Favorites />} errorElement={<ErrorPage />} loader={FavoritesLoader} action={FavoritesAction} />
     <Route path={LOGIN} element={<Login />} action={LoginAction} errorElement={<ErrorPage />} />
-    <Route path={SIGNUP} element={<Signup />} action={SignupAction} errorElement={<ErrorPage />} />
     <Route path={`${INDEX}*`} element={<ErrorPage />} />
   </Route>
 ));

@@ -1,4 +1,4 @@
-import { Form, NavLink } from 'react-router-dom';
+import { Form } from 'react-router-dom';
 import React from 'react';
 
 import styles from './styles.module.scss';
@@ -6,9 +6,9 @@ import styles from './styles.module.scss';
 import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
 import { Divider } from '../../components/Divider';
-import { SIGNUP } from '../../utils/enums/links';
 import { GmailIcon } from '../../components/GmailIcon';
 import { useLogin } from './useLogin';
+import { GithubIcon } from '../../components/GithubIcon';
 
 export const Login = () => {
     useLogin();
@@ -28,13 +28,8 @@ export const Login = () => {
                 <Divider className={styles.login__divider} />
                 <Form method='post'>
                     <Button style="unestiled" name="external" value="gmail" type='submit'><GmailIcon /></Button>
+                    <Button style="unestiled" name="external" value="github" type='submit'><GithubIcon /></Button>
                 </Form>
-                <p>
-                    No account yet? {' '}
-                    <NavLink to={SIGNUP}>
-                        Sign up
-                    </NavLink>
-                </p>
             </div>
         </section>
     );
