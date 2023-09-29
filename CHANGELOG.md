@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.17](https://github.com/agustingorgni/famouser/compare/v0.0.16...v0.0.17) (2023-09-29)
+
+
+### Styles
+
+* **login:** transition modified ([f302380](https://github.com/agustingorgni/famouser/commit/f302380cb628255ad90a299121a46d7f1f290a27))
+
 ### [0.0.16](https://github.com/agustingorgni/famouser/compare/v0.0.15...v0.0.16) (2023-09-29)
 
 
