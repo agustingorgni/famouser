@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.16](https://github.com/agustingorgni/famouser/compare/v0.0.15...v0.0.16) (2023-09-29)
+
+
+### Bug Fixes
+
+* **Login:** display added instead height ([e06110f](https://github.com/agustingorgni/famouser/commit/e06110ff4a5248d591c228c884a8583f40b3dbb2))
+
 ### [0.0.15](https://github.com/agustingorgni/famouser/compare/v0.0.14...v0.0.15) (2023-09-29)
 
 ### [0.0.14](https://github.com/agustingorgni/famouser/compare/v0.0.13...v0.0.14) (2023-09-29)
