@@ -17,7 +17,6 @@ export const Description = () => {
         isAlive,
         fetcher,
         isFav,
-        buttonDisabled,
         occupation,
         country,
         gender,
@@ -41,7 +40,6 @@ export const Description = () => {
                             className={styles.detail__heart}
                             name="is_favorite"
                             value={isFav}
-                            disabled={buttonDisabled}
                         >
                             {isFav ? <HeartIcon /> : <HeartIcon color="gray" />}
                         </button>

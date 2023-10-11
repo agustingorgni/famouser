@@ -23,7 +23,6 @@ export const useDescription = () => {
     } = useLoaderData();
 
     const [isFav, setIsFav] = useState(isFavorite);
-    const [buttonDisabled, setButtonDisabled] = useState(false);
     const fetcher = useFetcher();
     const navigate = useNavigate();
     const { dispatch } = useFamouserState();
@@ -39,14 +38,15 @@ export const useDescription = () => {
                     navigate(fetcher.data.redirect);
                 } else {
                     dispatch({ type: SHOW_SNACKBAR, payload: { type: ERROR, message: GENERIC_ERROR } });
+                    setIsFav(!favorite);
                     hideSnackbar(dispatch);
                 }
             } else {
                 setIsFav(() => favorite);
             }
+        } else if (state === 'submitting') {
+            setIsFav(true);
         }
-
-        setButtonDisabled(fetcher.state === 'submitting');
     }, [fetcher, navigate]);
 
     const avatar = gender === MALE ? '/famouser/img/male_avatar.png' : '/famouser/img/female_avatar.png';
@@ -56,7 +56,6 @@ export const useDescription = () => {
         name,
         isAlive,
         isFav,
-        buttonDisabled,
         occupation,
         flag,
         country,
